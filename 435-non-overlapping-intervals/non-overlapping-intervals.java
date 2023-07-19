@@ -20,7 +20,7 @@ class Solution {
         return intervals.length - stack.size();
     }
 
-    public int eraseOverlapIntervals(int[][] intervals) {
+    public int eraseOverlapIntervalsCOPILOT(int[][] intervals) {
         if (intervals.length <= 1) return 0;
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
@@ -31,13 +31,30 @@ class Solution {
                 result++;
                 // Update end time to the minimum end time between the current and previous interval
                 end = Math.min(end, intervals[i][1]);
-            } else end = intervals[i][1];
+            } else {
+end = intervals[i][1];
+            }
         }
 
         return result;
     }
     // LeetCode Soln
-    // public int eraseOverlapIntervals(int[][] intervals) {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if (intervals.length <= 1) return 0;
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
 
-    // }
+        int end = Integer.MIN_VALUE;
+        int result = 0;
+        for (int i = 0; i < intervals.length; i++) {
+            int source = intervals[i][0];
+            int destination = intervals[i][1];
+
+            if (source >= end) {
+                end = destination;
+            }
+            else
+                result++;
+        }
+        return result;
+    }
 }
