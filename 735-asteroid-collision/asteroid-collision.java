@@ -1,33 +1,30 @@
 class Solution {
+
     public int[] asteroidCollision(int[] asteroids) {
-        
-        Stack<Integer> stck=new Stack<Integer>();
-        int i = 0;
-        while(i < asteroids.length){
-            if(asteroids[i]>0){
-                stck.push(asteroids[i]);
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
+        while (index < asteroids.length) {
+            if (asteroids[index] > 0) {
+                stack.push(asteroids[index]);
+            } 
+            else {
+                while(!stack.isEmpty() && stack.peek() > 0 && stack.peek() < Math.abs(asteroids[index])){
+                    stack.pop();
+                }
+                if(stack.isEmpty() || stack.peek() < 0) {
+                    stack.push(asteroids[index]);
+                }
+                else if(!stack.isEmpty() && stack.peek() == Math.abs(asteroids[index])) {
+                    stack.pop();
+                }
             }
-            else{
-                while(!stck.isEmpty() && stck.peek() > 0 && stck.peek() < Math.abs(asteroids[i])){
-                    stck.pop();
-                }
-                if(stck.isEmpty() || stck.peek() < 0){
-                    stck.push(asteroids[i]);
-                }
-                else if(stck.peek() == Math.abs(asteroids[i])){
-                    stck.pop();
-                }
-            }
-            i++;
+            index++;
         }
-
-        // stck.forEach(System.out::println);
-        int[] result=new int[stck.size()];
-        int index=stck.size()-1;
-        while(!stck.isEmpty()){
-            result[index--]=stck.pop();
+        int[] result = new int[stack.size()];
+        int i = stack.size()-1;
+        while (i >= 0) {
+            result[i--] = stack.pop();
         }
-
         return result;
     }
 }
