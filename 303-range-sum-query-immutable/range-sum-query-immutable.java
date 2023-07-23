@@ -1,16 +1,16 @@
 class NumArray {
-    int[] num;
+    int[] NumArray;
     public NumArray(int[] nums) {
-        for(int i = 1; i<nums.length;i++){
-            nums[i] = nums[i] + nums[i-1];
+        for(int i = 1; i<nums.length; i++){
+            nums[i] = nums[i-1] +nums[i];
         }
-        this.num=nums;
+        this.NumArray = nums;
     }
     
     public int sumRange(int left, int right) {
         if(left == 0)
-            return num[right];
-        return num[right] - num[left-1];
+            return NumArray[right];
+        return NumArray[right] - NumArray[left - 1];
     }
 }
 
