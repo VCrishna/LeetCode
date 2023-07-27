@@ -9,10 +9,6 @@ class Solution {
                     pq.poll();
             }
         }
-        // while (k > 1) {
-        //     pq.poll();
-        //     k--;
-        // }
         return pq.peek();
     }
 }
