@@ -10,6 +10,7 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
+        // We apply merge sort algorithm to sort given linked list
         if (head == null || head.next == null) 
             return head;
         
@@ -29,6 +30,7 @@ class Solution {
         temp.next = null;
         // slow is at the beginning of the right half
         // fast is at the end of right half
+        
         ListNode left_side = sortList(head);
         ListNode right_side = sortList(slow);
 
