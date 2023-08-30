@@ -32,7 +32,9 @@ class Solution {
         ListNode prev = null;
         while(current != null) {
             ListNode next = current.next;
+            // reversing the link between current element and previous element
             current.next = prev;
+            // moving prev and current pointers forward
             prev = current;
             current = next;
         }
