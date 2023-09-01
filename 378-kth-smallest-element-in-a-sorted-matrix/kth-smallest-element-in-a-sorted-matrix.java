@@ -48,71 +48,58 @@ Approach 3: Binary Search
 
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-     int n = matrix.length;
-      int low = matrix[0][0];
-      int high = matrix[n - 1][n - 1];
-      
-      while(low < high) {
-        int mid = low + (high - low) / 2;
-        int count = lessEqual(matrix, mid);
-        
-        if(count < k) low = mid + 1;
-        else
-          high = mid;
-      }
-      return low;
-    }
-  public int lessEqual(int[][] matrix, int target) {
-    int count = 0, len = matrix.length;
-    int i = len - 1, j = 0;
+    // Get the number of rows/columns (since it's an n x n matrix).
+    int n = matrix.length;
     
-    while(i >= 0 && j < len) {
-      if(matrix[i][j] > target) i --;
-      
-      else{
-        count = count + i + 1;
-        j ++;
-      }
-      
+    // Set initial values of left and right for binary search.
+    // Left is set to the top-left corner value and right to the bottom-right corner value of the matrix.
+    int left = matrix[0][0], right = matrix[n-1][n-1];
+    
+    // Binary search loop.
+    while (left < right) {
+        // Compute the middle value between left and right.
+        int mid = left + (right - left) / 2;
+        
+        // Initialize count (to count numbers <= mid) and j (to traverse columns in reverse).
+        int count = 0, j = n - 1;
+        
+        // Traverse the matrix row by row.
+        for (int i = 0; i < n; i++) {
+            // Move column pointer j to the left while the current value is greater than mid.
+            while (j >= 0 && matrix[i][j] > mid) {
+                j--;
+            }
+            
+            // j + 1 gives the count of numbers <= mid in the current row.
+            count += j + 1;
+        }
+        
+        // If we've found less numbers than k, move left to mid + 1.
+        if (count < k) {
+            left = mid + 1;
+        } else {
+            // Else, move right to mid.
+            right = mid;
+        }
     }
-      return count;
-  }
+    
+    // When left and right converge, it's the kth smallest value.
+    return left;
+    }
 }
 
 */
 
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        // PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
-        // for(int[] row : matrix) {
-        //     for(int col : row) {
-        //         maxHeap.add(col);
-        //         if(maxHeap.size() > k)
-        //             maxHeap.poll();
-        //     }
-        // }
-        // return maxHeap.poll();
-        int n = matrix.length;
-        int left = matrix[0][0], right = matrix[n-1][n-1];
-        
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            int count = 0, j = n - 1;
-            
-            for (int i = 0; i < n; i++) {
-                while (j >= 0 && matrix[i][j] > mid) {
-                    j--;
-                }
-                count += j + 1;
-            }
-            
-            if (count < k) {
-                left = mid + 1;
-            } else {
-                right = mid;
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+        for(int[] row : matrix) {
+            for(int col : row) {
+                maxHeap.add(col);
+                if(maxHeap.size() > k)
+                    maxHeap.poll();
             }
         }
-        
-        return left;
+        return maxHeap.poll();
     }
 }
