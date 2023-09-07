@@ -8,31 +8,32 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+ class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        if(head == null) {
-            return head;
-        }
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head; // dummy is linked to head
         ListNode prev = dummy;
+
         // Finding the node at position left-1
         for (int i = 1; i < left; i++) {
             prev = prev.next;
         }
 
         // Find the nodes at positions left, right, and right+1
-        ListNode current = prev.next;
-        ListNode next = current.next;
-        ListNode tail = current;
-        for(int i = left; i< right;i++) {
+        ListNode curr = prev.next;
+        ListNode next = curr.next;
+        ListNode tail = curr;
+        for (int i = left; i < right; i++) {
             ListNode temp = next.next;
-            next.next = current;
-            current = next;
+            next.next = curr;
+            curr = next;
             next = temp;
         }
         tail.next = next;
-        prev.next = current;
+
+        // Link the reversed section back to the original list
+        prev.next = curr;
+
         return dummy.next;
     }
 }
