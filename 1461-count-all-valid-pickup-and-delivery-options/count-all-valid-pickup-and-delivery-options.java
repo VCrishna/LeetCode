@@ -10,12 +10,16 @@ class Solution {
         long mod = (long) (1e9 + 7);
         long result = 1;
         int slots = 2 * n;
-
-        for (int i = 1; i <= n; i++) {
+        while(slots > 0) {
             long valid_choices = slots * (slots - 1) / 2;
             result = (result * valid_choices) % mod;
             slots -= 2;
         }
+        // for (int i = 1; i <= n; i++) {
+        //     long valid_choices = slots * (slots - 1) / 2;
+        //     result = (result * valid_choices) % mod;
+        //     slots -= 2;
+        // }
 
         return (int) result;
     }
