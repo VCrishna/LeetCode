@@ -1,5 +1,4 @@
 class Solution {
-
     public int minCostConnectPoints(int[][] points) {
         int length = points.length;
         int cost = 0;
@@ -23,6 +22,9 @@ class Solution {
             for (int nextNode = 0; nextNode < length; nextNode++) {
                 if (!visitedSet.contains(nextNode)) {
                     int nextWeight = Math.abs(points[nextNode][0] - points[currentNode][0]) + Math.abs(points[nextNode][1] - points[currentNode][1]);
+                    // We only need to add the potentialWeight to the heap if it's lesser than the existing weight for that node.
+                    // But since Java's PriorityQueue does not provide a method to update a specific entry, we'll add it regardless.
+                    // Note: This will add duplicate entries for nodes but with different weights. The lowest weight will always be polled first.
                     minHeap.offer(new int[] { nextWeight, nextNode });
                 }
             }
