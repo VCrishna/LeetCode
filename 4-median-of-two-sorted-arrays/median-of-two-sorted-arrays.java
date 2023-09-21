@@ -1,4 +1,5 @@
 class Solution {
+
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         double result = 0;
         int i = 0, j = 0, k = 0;
@@ -21,16 +22,20 @@ class Solution {
         while (j < nums2.length) {
             merged[k++] = nums2[j++];
         }
-        System.out.println(Arrays.toString(merged));
-        if(merged.length % 2 != 0) {
-            int middle = ((merged.length - 1) / 2);
-            return merged[middle];
+        // System.out.println(Arrays.toString(merged));
+        // if(merged.length % 2 != 0) {
+        //     int middle = ((merged.length - 1) / 2);
+        //     return merged[middle];
+        // }
+        // else {
+        //     int middle = ((merged.length - 1) / 2);
+        //     result = (merged[middle] + merged[middle+1]);
+        // }
+        // return result/2;
+        if (merged.length % 2 == 0) {
+            return (merged[merged.length / 2] + merged[merged.length / 2 - 1]) / 2.0;
+        } else {
+            return merged[merged.length / 2];
         }
-        else {
-            int middle = ((merged.length - 1) / 2);
-            result = (merged[middle] + merged[middle+1]);
-            // return result;
-        }
-        return result/2;
     }
 }
