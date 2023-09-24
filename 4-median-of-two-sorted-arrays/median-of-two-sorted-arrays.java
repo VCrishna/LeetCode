@@ -1,41 +1,27 @@
 class Solution {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        double result = 0;
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        int[] arr = new int[len1 + len2];
         int i = 0, j = 0, k = 0;
-        int[] merged = new int[nums1.length + nums2.length];
-
-        // Traverse both arrays
-        while (i < nums1.length && j < nums2.length) {
+        while (i < len1 && j < len2) {
             if (nums1[i] < nums2[j]) {
-                merged[k++] = nums1[i++];
+                arr[k++] = nums1[i++];
             } else {
-                merged[k++] = nums2[j++];
+                arr[k++] = nums2[j++];
             }
         }
-        // Store remaining elements of first array (if any)
-        while (i < nums1.length) {
-            merged[k++] = nums1[i++];
+        while (i < len1) {
+            arr[k++] = nums1[i++];
         }
-
-        // Store remaining elements of second array (if any)
-        while (j < nums2.length) {
-            merged[k++] = nums2[j++];
+        while (j < len2) {
+            arr[k++] = nums2[j++];
         }
-        // System.out.println(Arrays.toString(merged));
-        // if(merged.length % 2 != 0) {
-        //     int middle = ((merged.length - 1) / 2);
-        //     return merged[middle];
-        // }
-        // else {
-        //     int middle = ((merged.length - 1) / 2);
-        //     result = (merged[middle] + merged[middle+1]);
-        // }
-        // return result/2;
-        if (merged.length % 2 == 0) {
-            return (merged[merged.length / 2] + merged[merged.length / 2 - 1]) / 2.0;
+        if (arr.length % 2 == 0) {
+            return ((arr[(arr.length - 1) / 2] + arr[(arr.length - 1) / 2 + 1]) * 1.0 / 2);
         } else {
-            return merged[merged.length / 2];
+            return arr[(arr.length - 1) / 2] * 1.0;
         }
     }
 }
