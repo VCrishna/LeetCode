@@ -1,5 +1,25 @@
 class Solution {
     public int minDeletions(String s) {
+        // count number of deletions
+        int deletions = 0;
+        int[] frequencies = new int[26]; // 26 --> alphabets
+
+        // set is used to maintain used characters
+        Set<Integer> used = new HashSet<>();
+        for(char ch : s.toCharArray()) {
+            frequencies[ch-'a']++;
+        }
+        for(int i : frequencies){
+            // System.out.println(i);
+            while(i > 0 && !used.add(i)) {
+                i--;
+                deletions++;
+            }
+        }
+
+        return deletions;
+    }
+    public int minDeletions_with_map(String s) {
         // Map is used to store character and its frequency
         Map<Character, Integer> map = new HashMap<>();
         // set is used to maintain the unique frequncies of each character
