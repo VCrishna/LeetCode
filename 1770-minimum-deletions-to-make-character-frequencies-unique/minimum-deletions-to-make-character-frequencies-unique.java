@@ -2,15 +2,19 @@ class Solution {
     public int minDeletions(String s) {
         // count number of deletions
         int deletions = 0;
+        // frequencies array is used to store frequency of each character
         int[] frequencies = new int[26]; // 26 --> alphabets
-
         // set is used to maintain used characters
         Set<Integer> used = new HashSet<>();
+        // count frequencies of each character and updating in frequencies array
         for(char ch : s.toCharArray()) {
             frequencies[ch-'a']++;
         }
+        // iterating over each frequency
         for(int i : frequencies){
             // System.out.println(i);
+            // if current frequncy of a character is > 0 &&  !used.add(frequency)
+            // then we are decrementing frequency and incrementing number of deletions
             while(i > 0 && !used.add(i)) {
                 i--;
                 deletions++;
