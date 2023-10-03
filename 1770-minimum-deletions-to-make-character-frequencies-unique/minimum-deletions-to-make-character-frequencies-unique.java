@@ -1,15 +1,23 @@
 class Solution {
-
     public int minDeletions(String s) {
-        int cnt[] = new int[26], res = 0;
-        Set<Integer> used = new HashSet<>();
-        for (int i = 0; i < s.length(); ++i) ++cnt[s.charAt(i) - 'a'];
-        for (int i = 0; i < 26; ++i) {
-            while (cnt[i] > 0 && !used.add(cnt[i])) {
-                --cnt[i];
-                ++res;
-            }
+        Map<Character, Integer> map = new HashMap<>();
+        Set<Integer> set = new HashSet<>();
+
+        int deletions = 0;
+
+        // calculating the frequencies of each character
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
-        return res;
+
+        for(int i : map.values()) {
+            
+            while(i > 0 && set.contains(i)){
+                i--;
+                deletions++;
+            }
+            set.add(i);
+        }
+        return deletions;
     }
 }
