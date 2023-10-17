@@ -8,7 +8,6 @@ class Solution {
             // filling elements in between first and last element in the row
             for(int j = row.size() - 1; j > 0; j--) {
                 // getting last and before last element and placing at last index of the row
-                
                 row.set(j,(row.get(j)+row.get(j-1)));
             }
             // adding 1 to the end of row
