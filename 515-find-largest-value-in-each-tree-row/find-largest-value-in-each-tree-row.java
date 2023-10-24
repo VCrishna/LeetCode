@@ -21,23 +21,20 @@ class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()) {
-            int size = queue.size();
+            int levelSize = queue.size();
             int currentMax = Integer.MIN_VALUE;
-            for(int i = 0; i < size; i++) {
-                TreeNode current = queue.poll();
-                currentMax = Math.max(currentMax, current.val);
-                if(current.left != null) {
-                    queue.add(current.left);
+            for(int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll();
+                currentMax = Math.max(currentMax, currentNode.val);
+                if(currentNode.left != null) {
+                    queue.add(currentNode.left);
                 }
-                if(current.right != null) {
-                    queue.add(current.right);
+                if(currentNode.right != null) {
+                    queue.add(currentNode.right);
                 }
             }
             result.add(currentMax);
         }
-
-
-
         return result;
     }
 }
