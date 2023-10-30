@@ -14,7 +14,6 @@ class Solution {
         // You, will get the result array...
         // O(n)
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(Integer.bitCount(arr[i]));
             arr[i] += Integer.bitCount(arr[i]) * 10001;
         }
         // n log(n)
