@@ -1,5 +1,6 @@
 class Solution {
     public int[] findArray(int[] pref) {
+        // The inverse of XOR is XOR itself
         // If the length of the given array `pref` is 1 or 0,
         // there's nothing to compute. So, return the same array.
         if (pref.length <= 1) return pref;
