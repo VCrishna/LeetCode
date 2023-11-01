@@ -19,16 +19,10 @@ class Solution {
         Map<Integer, Integer> freqCounter = new HashMap<>();
         dfs(root, freqCounter);
         int maxCount = Integer.MIN_VALUE;
-        int count = 0;
         for (int i : freqCounter.values()) {
-            // maxCount = Math.max(maxCount, i);
-            if (i > maxCount) {
-                maxCount = i;
-                count++;
-            }
+            maxCount = Math.max(maxCount, i);
         }
         Set<Integer> s = new HashSet<>();
-
         for (Map.Entry<Integer, Integer> entry : freqCounter.entrySet()) {
             if (entry.getValue() == maxCount) {
                 s.add(entry.getKey());
@@ -36,7 +30,8 @@ class Solution {
         }
         int[] result = new int[s.size()];
         int index = 0;
-        for (int i : s) result[index++] = i;
+        for (int i : s) 
+            result[index++] = i;
         return result;
     }
 
