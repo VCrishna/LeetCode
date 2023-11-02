@@ -14,30 +14,43 @@
  * }
  */
 class Solution {
-    double average;
+    // Initialize a variable to keep track of the maximum average.
+    double maxAverage;
 
     public double maximumAverageSubtree(TreeNode root) {
-        average = 0.0;
-
+        // Initialize the maxAverage to 0.0
+        maxAverage = 0.0;
+        
+        // Start the depth-first search from the root of the tree.
         dfs(root);
 
-        return average;
+        // Return the maximum average found in the tree.
+        return maxAverage;
     }
 
     public int[] dfs(TreeNode root) {
-        if (root == null) 
-            return new int[] { 0, 0 };
+        // If the current node is null, return [0, 0] indicating sum and count are both zero.
+        if (root == null)
+            return new int[] { 0, 0 }; 
+        
+        // Recursively calculate the sum and count for the left subtree.
         int[] left = dfs(root.left);
+        // Recursively calculate the sum and count for the right subtree.
         int[] right = dfs(root.right);
 
-        int sumSoFar = left[0] + right[0] + root.val;
-        int countOfNode = left[1] + right[1] + 1;
+        // Calculate the sum of values in the current subtree.
+        int sumSoFar = left[0] + right[0] + root.val; 
+        // Calculate the count of nodes in the current subtree, including the current node.
+        int countOfNode = left[1] + right[1] + 1; 
 
-        // Calculate the average as a double
+        // Calculate the average as a double to preserve decimal values.
         double currentAverage = (double) sumSoFar / countOfNode;
 
-        average = Math.max(average, currentAverage);
-
+        // Update the maxAverage with the maximum value found so far.
+        maxAverage = Math.max(maxAverage, currentAverage);
+        
+        // Return the sum and count of the current subtree for use in the parent node's calculation.
         return new int[] { sumSoFar, countOfNode };
     }
 }
+
