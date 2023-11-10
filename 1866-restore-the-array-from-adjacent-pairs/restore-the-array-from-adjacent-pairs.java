@@ -1,9 +1,8 @@
 class Solution {
-    Map<Integer, List<Integer>> graph;
     public int[] restoreArray(int[][] adjacentPairs) {
         if(adjacentPairs.length == 1) 
             return adjacentPairs[0];
-        graph = new HashMap<>();
+        Map<Integer, List<Integer>> graph = new HashMap<>();
         for(int[] edge : adjacentPairs) {
             int x = edge[0];
             int y = edge[1];
@@ -24,14 +23,14 @@ class Solution {
             }
         }
         int[] result = new int[adjacentPairs.length + 1];
-        dfs(root, Integer.MAX_VALUE, result, 0);
+        dfs(graph, root, Integer.MAX_VALUE, result, 0);
         return result;
     }
-    private void dfs(int node, int prev, int[] ans, int i) {
+    private void dfs(Map<Integer, List<Integer>> graph,int node, int prev, int[] ans, int i) {
         ans[i] = node;
         for (int neighbor : graph.get(node)) {
             if (neighbor != prev) {
-                dfs(neighbor, node, ans, i + 1);
+                dfs(graph, neighbor, node, ans, i + 1);
             }
         }
     }
