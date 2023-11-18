@@ -12,11 +12,7 @@ class Solution {
             while(nums[right] * (right - left + 1) > total + k) {
                 total -= nums[left++];
             }
-            // Check if the difference between max and min values in the window is <= k
             result = Math.max(result, right - left + 1);
-            if (nums[right] * (right - left + 1) <= total + k) {
-                result = Math.max(result, right - left + 1);
-            }
             right++;
         }
         return result;
