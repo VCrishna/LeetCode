@@ -1,5 +1,5 @@
 class Solution {
-    public int minMoves2(int[] nums) {
+    public int minMoves2_BRUTE_FORCE(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
         int steps = 0;
@@ -9,7 +9,7 @@ class Solution {
         }
         return steps;
     }
-    public int minMoves2_better(int[] nums) {
+    public int minMoves2(int[] nums) {
         Arrays.sort(nums);
         int steps = 0;
         int i = 0;
