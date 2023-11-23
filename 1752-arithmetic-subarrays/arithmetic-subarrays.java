@@ -2,12 +2,10 @@ class Solution {
 
     public List<Boolean> checkArithmeticSubarrays(int[] nums, int[] l, int[] r) {
         List<Boolean> result = new ArrayList<>();
-
         for (int i = 0; i < l.length; i++) {
             int[] newArray = Arrays.copyOfRange(nums, l[i], r[i] + 1);
             result.add(checkHelper(newArray));
         }
-
         return result;
     }
 
