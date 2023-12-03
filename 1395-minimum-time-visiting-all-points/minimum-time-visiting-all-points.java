@@ -4,19 +4,12 @@ class Solution {
     public int minTimeToVisitAllPoints(int[][] points) {
         int seconds = 0;
         for (int i = 0; i < points.length - 1; i++) {
-            // int distance = findDistance(points[i], points[i + 1]);
-            // seconds += distance;
-            seconds += Math.max(
-                Math.abs(points[i + 1][0] - points[i][0]),
-                Math.abs(points[i + 1][1] - points[i][1])
-            );
+            // Calculate the time (or distance) between the current point and the next point
+            int xDifference = Math.abs(points[i + 1][0] - points[i][0]);
+            int yDifference = Math.abs(points[i + 1][1] - points[i][1]);
+            // Use the maximum difference between x and y coordinates as the time for this segment
+            seconds += Math.max(xDifference, yDifference);
         }
         return seconds;
-    }
-
-    public int findDistance(int[] a, int[] b) {
-        int x = b[0] - a[0];
-        int y = b[1] - a[1];
-        return (int) Math.sqrt((x * x) + (y * y));
     }
 }
