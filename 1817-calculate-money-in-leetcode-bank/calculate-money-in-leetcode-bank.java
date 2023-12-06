@@ -1,20 +1,23 @@
 class Solution {
+
     public int totalMoney(int n) {
-      int weeks = n / 7;
-      // week 1
-      int low = 28;
-      int high = 28 + 7 * ( weeks - 1);
-      // int result = (low + high) * (weeks / 2);
-      int result = (weeks * (low + high) / 2);
-      int monday = weeks + 1;
-      for(int i = 0; i < n % 7; i++) {
-        result += i + monday;
-      }
+        // Calculate the number of complete weeks
+        int weeks = n / 7;
 
+        // Calculate the total money for the complete weeks using arithmetic series formula
+        // week 1
+        int low = 28; // Initial money on Monday of the first week
+        int high = 28 + 7 * (weeks - 1); // Money on Sunday of the last complete week
+        int result = (weeks * (low + high) / 2); // Sum of the arithmetic series for complete weeks
 
-      return result;
+        // Calculate money for the remaining days
+        int monday = weeks + 1; // Money on Monday of the current week
+        for (int i = 0; i < n % 7; i++) {
+            result += i + monday; // Add money for each remaining day of the current week
+        }
+        // Return the total money
+        return result;
     }
-
     public int totalMoney_BRUTE_FORCE(int n) {
         int day = 0;
         int deposit = 1;
@@ -29,7 +32,7 @@ class Solution {
             // to reset the deposit
             // checking if the day is first day of the week if so
             if (day % 7 == 0) {
-              // updating the deposit
+                // updating the deposit
                 deposit = 1 + (day / 7);
             }
         }
