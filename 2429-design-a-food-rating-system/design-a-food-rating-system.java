@@ -1,67 +1,55 @@
 class Food {
-    String food;
+    String foodName;
     String cuisine;
     int rating;
 
-    Food(String foods, String cuisines, int ratings) {
-        this.food = foods;
-        this.cuisine = cuisines;
-        this.rating = ratings;
+    public Food(String food, String cuisine, int rating) {
+        this.foodName = food;
+        this.cuisine = cuisine;
+        this.rating = rating;
     }
 }
+
 class FoodRatings {
-    Map<String, PriorityQueue<Food>> map;
+    // foodMap
+    // key : cuisisne
+    // value : PriorityQueue of Food Objects (Max Heap) With max heap we can get
+    // highest-rated food item for a type of cuisine in the system in constant time
+    Map<String, PriorityQueue<Food>> foodMap;
+    // menu
+    // key : food
+    // value :  Food object of the food,
+    // we can get cuisine and rating of the food from food object in the map
     Map<String, Food> menu;
 
     public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
-        map = new HashMap<>();
+        foodMap = new HashMap<>();
         menu = new HashMap<>();
-        for (int i = 0; i < foods.length; i++) {
-            map.putIfAbsent(cuisines[i], new PriorityQueue<>(
-                (f1, f2) -> f1.rating == f2.rating ? f1.food.compareTo(f2.food) : f2.rating - f1.rating)
-            );
-            PriorityQueue<Food> pq = map.get(cuisines[i]);
-            Food foodObject = new Food(foods[i],cuisines[i],ratings[i]);
-            pq.add(foodObject);
-            menu.put(foods[i],foodObject);
 
+        for (int i = 0; i < cuisines.length; i++) {
+            if (!foodMap.containsKey(cuisines[i])) {
+                foodMap.put(cuisines[i], new PriorityQueue<>(
+                    (f1, f2) -> f1.rating == f2.rating ? f1.foodName.compareTo(f2.foodName) : f2.rating - f1.rating)
+                );
+            }
+            Food foodObject = new Food(foods[i], cuisines[i], ratings[i]);
+            foodMap.get(cuisines[i]).add(foodObject);
+            menu.put(foods[i], foodObject);
         }
     }
 
     public void changeRating(String food, int newRating) {
         Food current = menu.get(food);
-        PriorityQueue<Food> pq = map.get(current.cuisine);
-        pq.remove(current);
+        PriorityQueue<Food> maxHeap = foodMap.get(current.cuisine);
+        maxHeap.remove(current);
         current.rating = newRating;
-        pq.add(current);
+        maxHeap.add(current);
     }
 
     public String highestRated(String cuisine) {
-        return map.get(cuisine).peek().food;
+        return foodMap.get(cuisine).peek().foodName;
     }
 }
-/**
-
-foods : ["kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"]
-cuisines : ["korean", "japanese", "japanese", "greek", "japanese", "korean"]
-ratings : [9, 12, 8, 15, 14, 7]
-
-
-foods : ["FoodRatings", "highestRated", "highestRated", "changeRating", "highestRated", "changeRating", "highestRated"]
-[
-  [
-    ["kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"], 
-    ["korean", "japanese", "japanese", "greek", "japanese", "korean"], 
-    [9, 12, 8, 15, 14, 7]
-  ], 
-  ["korean"], 
-  ["japanese"], 
-  ["sushi", 16], 
-  ["japanese"], 
-  ["ramen", 16], 
-  ["japanese"]
-]
-*/
 /**
  * Your FoodRatings object will be instantiated and called as such:
  * FoodRatings obj = new FoodRatings(foods, cuisines, ratings);
