@@ -1,15 +1,12 @@
 class Solution {
-
     public int[][] imageSmoother(int[][] img) {
         int rows = img.length;
         int columns = img[0].length;
-
         // Iterating over each pixel in the image
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
                 int total = 0; // Accumulator for the sum of pixel values in the neighborhood
                 int count = 0; // Counter for the number of valid pixels in the neighborhood
-
                 // Iterating over the 3x3 neighborhood around the current pixel
                 // row - 1, row, row + 1
                 for (int i = row - 1; i < row + 2; i++) {
@@ -24,18 +21,16 @@ class Solution {
                         }
                     }
                 }
-
                 // Updating the original image with the smoothed value using bitwise operations
                 img[row][column] = img[row][column] ^ (total / count) << 8; // Storing smoothed value in the upper byte
             }
         }
-
+        // Iterating over each pixel in the image to shift the smoothed value back to the lower byte
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
                 img[row][column] = img[row][column] >> 8;
             }
         }
-
         return img;
     }
 
