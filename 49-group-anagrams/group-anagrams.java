@@ -14,10 +14,10 @@ class Solution {
             
             map.get(s2).add(s);
         }
-        for(Map.Entry<String, List<String>> entry : map.entrySet()) {
-            group.add(entry.getValue());
-        }
-
-        return group;
+        // for(Map.Entry<String, List<String>> entry : map.entrySet()) {
+        //     group.add(entry.getValue());
+        // }
+        // return group;
+        return new ArrayList(map.values());
     }
 }
