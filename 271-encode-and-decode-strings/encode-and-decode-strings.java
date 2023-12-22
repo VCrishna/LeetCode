@@ -4,27 +4,28 @@ public class Codec {
     public String encode(List<String> strs) {
         StringBuilder encode = new StringBuilder();
         for (String s : strs) encode.append(s.length() + "#" + s);
-        // System.out.println(encode.toString());
         return encode.toString();
     }
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        List<String> decoded = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         int i = 0;
 
         while (i < s.length()) {
             int j = i;
             while (j < s.length()) {
-                if (s.charAt(j) == '#') break;
+                if (s.charAt(j) == '#') {
+                    break;
+                }
                 j++;
             }
-            int length = Integer.parseInt(s.substring(i, j));
-            decoded.add(s.substring(j + 1, j + 1 + length));
-            i = j + 1 + length;
+            int size = Integer.parseInt(s.substring(i, j));
+            result.add(s.substring(j + 1, j + 1 + size));
+            i = j + 1 + size;
         }
 
-        return decoded;
+        return result;
     }
 }
 // Your Codec object will be instantiated and called as such:
