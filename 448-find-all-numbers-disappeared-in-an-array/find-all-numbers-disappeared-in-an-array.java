@@ -3,7 +3,7 @@ class Solution {
         List<Integer> result = new ArrayList<>();
         for(int i : nums) {
             int index = Math.abs(i);
-            if (nums[index - 1] > 0) {
+            if(nums[index - 1] > 0) {
                 nums[index - 1] *= -1;
             }
         }
