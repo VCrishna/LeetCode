@@ -1,23 +1,45 @@
 class Solution {
+
     public boolean isPathCrossing(String path) {
         Set<String> set = new HashSet<>();
         set.add("0,0"); // initial position
         int x = 0, y = 0;
-        for (int i = 0; i < path.length(); i++) {
-            if (path.charAt(i) == 'N') {
-                y++;
-            } else if (path.charAt(i) == 'S') {
-                y--;
-            } else if (path.charAt(i) == 'E') {
-                x++;
-            } else if (path.charAt(i) == 'W') {
-                x--;
+
+        for (char direction : path.toCharArray()) {
+            switch (direction) {
+                case 'N':
+                    y++;
+                    break;
+                case 'S':
+                    y--;
+                    break;
+                case 'E':
+                    x++;
+                    break;
+                case 'W':
+                    x--;
+                    break;
             }
-            String direction = x + "," + y;
-            if (set.contains(direction)) return true;
-            set.add(direction);
+            String currentPosition = x + "," + y;
+            if (set.contains(currentPosition)) return true;
+            set.add(currentPosition);
         }
         return false;
+        // for (int i = 0; i < path.length(); i++) {
+        //     if (path.charAt(i) == 'N') {
+        //         y++;
+        //     } else if (path.charAt(i) == 'S') {
+        //         y--;
+        //     } else if (path.charAt(i) == 'E') {
+        //         x++;
+        //     } else if (path.charAt(i) == 'W') {
+        //         x--;
+        //     }
+        //     String direction = x + "," + y;
+        //     if (set.contains(direction)) return true;
+        //     set.add(direction);
+        // }
+        // return false;
     }
 
     public boolean isPathCrossing_BRUTE_FORCE(String path) {
