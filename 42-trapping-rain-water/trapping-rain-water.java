@@ -23,13 +23,20 @@ class Solution {
         while (left < right) {
             // If the leftMax is less than the rightMax, process the left side
             if (height[left] < height[right]) {
-                leftMax = Math.max(leftMax, height[left]); // Update leftMax
-                result += leftMax - height[left]; // Calculate and add trapped water on the left side
-                left++; // Move the 'left' pointer to the right
+                // Updating leftMax to be the maximum of its current value and the height at the 'left' pointer
+                leftMax = Math.max(leftMax, height[left]);
+                // Calculating and adding trapped water on the left side by subtracting the current height from the updated leftMax
+                result += leftMax - height[left];
+                // Moving the 'left' pointer to the right
+                left++;
             } else {
-                rightMax = Math.max(rightMax, height[right]); // Update rightMax
-                result += rightMax - height[right]; // Calculate and add trapped water on the right side
-                right--; // Move the 'right' pointer to the left
+                // If the rightMax is greater than or equal to the leftMax, process the right side
+                // Updating rightMax to be the maximum of its current value and the height at the 'right' pointer
+                rightMax = Math.max(rightMax, height[right]);
+                // Calculating and adding trapped water on the right side by subtracting the current height from the updated rightMax
+                result += rightMax - height[right];
+                // Move the 'right' pointer to the left
+                right--;
             }
         }
 
