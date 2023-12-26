@@ -1,29 +1,39 @@
 class Solution {
+
+    // Time Complexity: O(n) - Linear time complexity, where n is the length of the input array
+    // Space Complexity: O(1) - Constant space complexity, as only a constant amount of extra space is used
     public int trap(int[] height) {
+        // Initialize two pointers, 'left' at the beginning, and 'right' at the end of the array
         int left = 0;
         int right = height.length - 1;
-        int leftMax = height[left];
-        int rightMax = height[right];
 
+        // Initialize leftMax and rightMax to the heights at the respective pointers
+        int leftMax = 0; // Adjusted to start from 0 since there is no separate array for leftMax
+        int rightMax = 0; // Adjusted to start from 0 since there is no separate array for rightMax
+
+        // Initialize the variable to store the result (total trapped water)
         int result = 0;
 
-        if(height.length == 0 || height == null) {
+        // Check if the input array is empty or null
+        if (height == null || height.length == 0) {
             return result;
         }
 
-        while(left < right) {
-            if(leftMax < rightMax) {
-                left++;
-                leftMax = Math.max(leftMax, height[left]);
-                result += leftMax - height[left];
-            }
-            else {
-                right--;
-                rightMax = Math.max(rightMax, height[right]);
-                result += rightMax - height[right];
+        // Iterate until the 'left' pointer is less than the 'right' pointer
+        while (left < right) {
+            // If the leftMax is less than the rightMax, process the left side
+            if (height[left] < height[right]) {
+                leftMax = Math.max(leftMax, height[left]); // Update leftMax
+                result += leftMax - height[left]; // Calculate and add trapped water on the left side
+                left++; // Move the 'left' pointer to the right
+            } else {
+                rightMax = Math.max(rightMax, height[right]); // Update rightMax
+                result += rightMax - height[right]; // Calculate and add trapped water on the right side
+                right--; // Move the 'right' pointer to the left
             }
         }
 
+        // Return the total trapped water
         return result;
     }
 
@@ -61,7 +71,6 @@ class Solution {
         return trap;
     }
 }
-
 /**
 
 class Solution {
