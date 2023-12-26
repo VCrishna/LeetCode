@@ -8,8 +8,8 @@ class Solution {
         int right = height.length - 1;
 
         // Initialize leftMax and rightMax to the heights at the respective pointers
-        int leftMax = 0; // Adjusted to start from 0 since there is no separate array for leftMax
-        int rightMax = 0; // Adjusted to start from 0 since there is no separate array for rightMax
+        int leftMax = height[left];
+        int rightMax = height[right];
 
         // Initialize the variable to store the result (total trapped water)
         int result = 0;
