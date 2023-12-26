@@ -1,8 +1,35 @@
 class Solution {
+    public int trap(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int leftMax = height[left];
+        int rightMax = height[right];
+
+        int result = 0;
+
+        if(height.length == 0 || height == null) {
+            return result;
+        }
+
+        while(left < right) {
+            if(leftMax < rightMax) {
+                left++;
+                leftMax = Math.max(leftMax, height[left]);
+                result += leftMax - height[left];
+            }
+            else {
+                right--;
+                rightMax = Math.max(rightMax, height[right]);
+                result += rightMax - height[right];
+            }
+        }
+
+        return result;
+    }
 
     // Time Complexity: O(n) - Linear time complexity, where n is the length of the input array
     // Space Complexity: O(n) - Linear space complexity, used for the leftMax and rightMax arrays
-    public int trap(int[] height) {
+    public int trap_EXTRA_SPACE(int[] height) {
         int trap = 0;
 
         // leftMax holds the maximum element encountered so far until that element when iterating from left to right
@@ -14,7 +41,7 @@ class Solution {
         rightMax[height.length - 1] = 0;
 
         // Populating leftMax array with maximum elements encountered while iterating from left to right
-        for (int i = 1; i <= height.length - 1; i++) {
+        for (int i = 1; i < height.length; i++) {
             leftMax[i] = Math.max(height[i - 1], leftMax[i - 1]);
         }
 
@@ -34,3 +61,28 @@ class Solution {
         return trap;
     }
 }
+
+/**
+
+class Solution {
+    public int trap(int[] height) {
+        int result = 0;
+        int start = 0;
+        int end = height.length - 1;
+        while (start < end) {
+            if (height[start] <= height[end]) {
+                int current = height[start];
+                while (height[++start] < current) {
+                    result += current - height[start];
+                }
+            } else {
+                int current = height[end];
+                while(height[--end] < current) {
+                    result += current - height[end];
+                }
+            }
+        }
+        return result;
+    }
+}
+ */
