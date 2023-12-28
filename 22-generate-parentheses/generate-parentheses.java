@@ -6,14 +6,14 @@ class Solution {
         return result;
     }
 
-    public void generate(List<String> result, String currentString, int open, int close, int max) {
+    public void generate(List<String> result, String currentString, int openCount, int closeCount, int max) {
         if (currentString.length() == max * 2) {
             result.add(currentString);
             return;
         }
-        if (open < max) 
-            generate(result, currentString + "(", open + 1, close, max);
-        if (close < open) 
-            generate(result, currentString + ")", open, close + 1, max);
+        if (openCount < max) 
+            generate(result, currentString + "(", openCount + 1, closeCount, max);
+        if (closeCount < openCount) 
+            generate(result, currentString + ")", openCount, closeCount + 1, max);
     }
 }
