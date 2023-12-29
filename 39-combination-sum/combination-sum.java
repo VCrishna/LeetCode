@@ -19,7 +19,7 @@ class Solution {
             result.add(new ArrayList<>(currentList));
             return;
         }
-        else if(target < 0 || currentIndex >= candidates.length) {
+        if(target < 0 || currentIndex >= candidates.length) {
             return;
         }
 
