@@ -1,33 +1,36 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        Arrays.sort(candidates);
-        List<List<Integer>> result = new ArrayList<>();
         List<Integer> currentList = new ArrayList<>();
-        backtrack(target, 0, candidates, currentList, result ); 
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        backtrack(target, 0, currentList, result, candidates);
+
         return result;
     }
-
-    public void backtrack(
-        int target, 
-        int currentIndex, 
-        int[] candidates, 
-        List<Integer> currentList, 
-        List<List<Integer>> result) {
-            if(target == 0) {
-                result.add(new ArrayList<>(currentList));
-                // return;
-            }
-            if(target < 0) {
-                return;
-            }
-            for(int i = currentIndex; i < candidates.length; i++) {
-                if(i > currentIndex && candidates[i] == candidates[i-1]) 
-                    continue;
-                // consider current element
-                currentList.add(candidates[i]);
-                backtrack(target - candidates[i], i + 1, candidates, currentList, result);
-                // don't consider current element
-                currentList.remove(currentList.size() - 1);
-            }
+    public void backtrack (
+        int target,
+        int currentIndex,
+        List<Integer> currentList,
+        List<List<Integer>> result,
+        int[] candidates        
+    ) {
+        if(target == 0) {
+            result.add(new ArrayList<>(currentList));
+            return;
         }
+        if(target < 0 || currentIndex >= candidates.length) {
+            return;
+        }
+
+        for(int i = currentIndex; i < candidates.length; i++) {
+            if(i > currentIndex && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            currentList.add(candidates[i]);
+            // i + 1
+            backtrack(target - candidates[i], i + 1, currentList, result, candidates);
+            currentList.remove(currentList.size() - 1);
+        }
+
+    }
 }
