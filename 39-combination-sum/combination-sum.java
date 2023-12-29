@@ -58,3 +58,32 @@ class Solution {
         );
     }
 }
+
+/**
+
+Iterative Approach
+
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(new ArrayList<>(), ans, 0, 0, candidates, target);
+        return ans;
+    }
+    public void backtrack(List<Integer> curr, List<List<Integer>> ans, int i, int sum, int[] candidates, int target) {
+        // base case sum == target
+        if(sum == target) {
+            ans.add(new ArrayList<>(curr));
+            return;
+        }
+        // combination from (i, n) | it means including self
+        for(int j = i ; j < candidates.length ; j++) {
+            int num = candidates[j];
+            if(sum + num <= target){
+                curr.add(num);
+                backtrack(curr, ans, j , sum + num, candidates, target);
+                curr.remove(curr.size() - 1);
+            }
+        }
+    }
+}
+ */
