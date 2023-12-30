@@ -15,6 +15,9 @@ class Solution {
             if(!result.contains(currentList)) {
                 result.add(new ArrayList<>(currentList));
             }
+            if(currentIndex >= nums.length) {
+                return;
+            }
             for(int i = currentIndex; i < nums.length; i++) {
                 currentList.add(nums[i]);
                 backtrack(nums, result, currentList, i + 1);
