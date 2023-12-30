@@ -8,6 +8,13 @@ class Solution {
     there are at most (n - 2) - 1 ways to do the replacement, it's a little bit like solving the N-Queens problem, 
     the time complexity is (n - 1) x (n - 3) x (n - 5) x ..., so it's O(n!!)
     
+    public boolean canWin(String s) {
+        for (int i = 0; i < s.length() - 1; ++i)
+            if (s.charAt(i) == '+' && s.charAt(i + 1) == '+' && 
+                !canWin(s.substring(0, i) + "--" + s.substring(i + 2)))
+                    return true;
+        return false;
+    }
     */
     public boolean canWin(String s) {
         if (s == null || s.length() < 2) {
