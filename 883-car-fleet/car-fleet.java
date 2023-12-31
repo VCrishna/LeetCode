@@ -8,7 +8,6 @@ class Solution {
             combined[i][1] = speed[i];
         }
         Arrays.sort(combined, (a, b) -> a[0] - b[0]);
-
         // for (int[] i : combined) {
         //     System.out.println(Arrays.toString(i));
         // }
