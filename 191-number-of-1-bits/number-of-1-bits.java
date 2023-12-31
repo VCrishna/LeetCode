@@ -1,9 +1,9 @@
 public class Solution {
     // you need to treat n as an unsigned value
-    public int hammingWeight(int n) {
+    public int hammingWeight_BRUTE_FORCE(int n) {
         return Integer.bitCount(n);
     }
-    public int hammingWeight_BRUTE_FORCE(int n) {
+    public int hammingWeight(int n) {
         // return Integer.bitCount(n);
         int count = 0;
         for (int i = 0; i < 32; i++) {
