@@ -1,15 +1,15 @@
 class Solution {
     public int maxLengthBetweenEqualCharacters(String s) {
-        int maxDistance = -1;
+        int maxLength = -1;
 
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j > i; j--) {
-                if (s.charAt(i) == s.charAt(j)) {
-                    maxDistance = Math.max(maxDistance, j - i - 1);
+        for(int left = 0; left < s.length(); left++) {
+            for(int right = s.length() - 1; right >= 0; right--) {
+                if(s.charAt(left) == s.charAt(right)) {
+                    maxLength = Math.max(maxLength, right - left - 1);
                 }
             }
         }
 
-        return maxDistance;
+        return maxLength;
     }
 }
