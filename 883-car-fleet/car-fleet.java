@@ -14,8 +14,9 @@ class Solution {
             if(!stack.isEmpty() && currentTime <= stack.peek()) {
                 continue;
             }
-            else
+            else{
                 stack.push(currentTime);
+            }
         }
 
         return stack.size();
