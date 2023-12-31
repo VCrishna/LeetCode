@@ -31,42 +31,7 @@ class Solution {
 
         return maxArea;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/** class Solution {
-    public int largestRectangleArea(int[] heights) {
+    public int largestRectangleArea_COMMENTS_ADDED(int[] heights) {
         
         // Initialize maxArea to store the maximum rectangle area.
         int maxArea = 0;
@@ -118,4 +83,3 @@ class Solution {
         return maxArea;
     }
 }
-*/
