@@ -1,23 +1,32 @@
 class Solution {
 
     public int leastInterval(char[] tasks, int n) {
+        // Array to store the count of each task (assuming uppercase letters)
         int[] counts = new int[26];
 
-        // Counting occurances of each task
+        // Counting occurrences of each task
         for (char elem : tasks) {
             counts[elem - 'A']++;
         }
-        // we get maximum task at the end of array after sorting
-        // so we can start processing with that task
+
+        // Sorting the counts array to have the maximum count at the end
         Arrays.sort(counts);
 
+        // The maximum value (count) of a task
+        // -1 because for last task there is no need to stay idle
         int maxValue = counts[25] - 1;
+
+        // Calculate the total idle slots
         int idleSlots = maxValue * n;
-        
-        for(int i = 24; i >= 0; i--) {
+
+        // Iterate through the counts array in reverse to distribute idle slots
+        for (int i = 24; i >= 0; i--) {
+            // Subtract the minimum of maxValue and the current count from idleSlots
             idleSlots -= Math.min(maxValue, counts[i]);
         }
 
+        // If idleSlots is negative, return the total number of tasks,
+        // otherwise, return idleSlots plus the total number of tasks
         return idleSlots < 0 ? tasks.length : idleSlots + tasks.length;
     }
 
