@@ -33,7 +33,7 @@ class Twitter {
         followers.add(userId);
         // maxHeap 
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[0] - a[0]);
-
+        // adding tweets of each user into the priorityqueue
         for (int user : followers) {
             if (tweetMap.containsKey(user)) {
                 tweetMap.get(user).forEach(x -> maxHeap.offer(x));
