@@ -1,4 +1,5 @@
 class Solution {
+    // bottom up or iterative approach
     public int climbStairs(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;
