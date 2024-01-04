@@ -1,19 +1,19 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        int rows=matrix.length;
-        
-        for(int i=0;i<rows;i++){ // loop to traverse through rows
-            for(int j=i;j<rows;j++){ // loop to traverse through columns
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        for (int row = 0; row < rows; row++) {
+            for (int column = row; column < rows; column++) {
+                int temp = matrix[row][column];
+                matrix[row][column] = matrix[column][row];
+                matrix[column][row] = temp;
             }
         }
-        for(int i=0;i<rows;i++){ // Using two pointer approach to swap columns
-            for(int j=0; j < rows/2; j++){
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][rows-1-j];
-                matrix[i][rows-1-j] = temp;
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < rows / 2; column++) {
+                int temp = matrix[row][column];
+                matrix[row][column] = matrix[row][rows - 1 - column];
+                matrix[row][rows - 1 - column] = temp;
             }
         }
     }
@@ -22,13 +22,10 @@ class Solution {
 //     public void rotate(int[][] matrix) {
 //         if(matrix.length == 0 || matrix.length != matrix[0].length)
 //             return;
-        
 //         int rows=matrix.length;
-        
 //         for(int layer=0;layer<rows/2; layer++){
 //             int first=layer;
 //             int last = rows - 1 - layer;
-
 //             for(int i=first;i<last;i++){
 //                 int temp = i-first;
 //                 int top=matrix[first][i];
