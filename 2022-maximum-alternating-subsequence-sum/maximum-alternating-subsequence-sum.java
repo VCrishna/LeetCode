@@ -1,17 +1,5 @@
 class Solution {
-    public long maxAlternatingSum_APP1(int[] nums) {
-        int sumEven = 0;
-        int sumOdd = 0;
-        for(int i = nums.length - 1; i >= 0; i--) {
-            int tempEven = Math.max(sumEven, sumOdd + nums[i]);
-            int tempOdd = Math.max(sumOdd, sumEven - nums[i]);
-            sumEven = tempEven;
-            sumOdd = tempOdd;
-        }
-
-        return sumEven;
-    }
-    
+        
     public long maxAlternatingSum(int[] nums) {
         if(nums.length == 1) return nums[0];
         long peak = 0; // Variable to track the sum of elements at peak positions.
@@ -44,6 +32,19 @@ class Solution {
         }
 
         return ans; // Return the final maximum alternating sum.
+    }
+
+    public long maxAlternatingSum_NOT_WORKING(int[] nums) {
+        int sumEven = 0;
+        int sumOdd = 0;
+        for(int i = nums.length - 1; i >= 0; i--) {
+            int tempEven = Math.max(sumEven, sumOdd + nums[i]);
+            int tempOdd = Math.max(sumOdd, sumEven - nums[i]);
+            sumEven = tempEven;
+            sumOdd = tempOdd;
+        }
+
+        return sumEven;
     }
 }
 // [6,2,1,2,4,5]
