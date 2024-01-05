@@ -29,12 +29,18 @@ class Solution {
         String[] mappings
         ) {
             if(currentString.length() == digits.length()) {
-                result.add(currentString.toString());
+                result.add(currentString);
                 return;
             }
             String letters = mappings[digits.charAt(currentIndex) - '0'];
             for(int i = 0; i < letters.length(); i++) {
-                generateCombinations(digits, result, currentIndex + 1, currentString + letters.charAt(i), mappings);
+                generateCombinations(
+                    digits,
+                    result,
+                    currentIndex + 1,
+                    currentString + letters.charAt(i),
+                    mappings
+                );
             }
         }
 }
