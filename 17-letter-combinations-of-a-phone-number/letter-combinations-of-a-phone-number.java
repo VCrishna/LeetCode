@@ -1,11 +1,12 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
-        if(digits.length() == 0 || digits == null)
+        if(digits == null || digits.length() == 0) {
             return result;
-        String[] mappings = {
+        }
+        String[] mappings = new String[] {
             "",
-            "",
+            "1",
             "abc",
             "def",
             "ghi",
@@ -15,20 +16,25 @@ class Solution {
             "tuv",
             "wxyz"
         };
-        generateLetterCombinations(result, mappings, "", 0, digits);
+        // digits, result, currentIndex, currentString, mappings
+        generateCombinations(digits, result, 0, "", mappings);
         return result;
     }
-    public void generateLetterCombinations(List<String> result, String[] mappings, String currentString,int index, String digits) {
-
-        if(currentString.length() == digits.length()) {
-            result.add(currentString);
-            return;
+    // backtracking helper method
+    public void generateCombinations(
+        String digits, 
+        List<String> result,
+        int currentIndex,
+        String currentString,
+        String[] mappings
+        ) {
+            if(currentString.length() == digits.length()) {
+                result.add(currentString.toString());
+                return;
+            }
+            String letters = mappings[digits.charAt(currentIndex) - '0'];
+            for(int i = 0; i < letters.length(); i++) {
+                generateCombinations(digits, result, currentIndex + 1, currentString + letters.charAt(i), mappings);
+            }
         }
-
-        String letters = mappings[digits.charAt(index) - '0'];
-        // System.out.println(letters);
-        for (int i = 0; i < letters.length(); i++) {
-            generateLetterCombinations(result, mappings, currentString + letters.charAt(i), index + 1, digits);
-        }
-    }
 }
