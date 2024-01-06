@@ -15,6 +15,6 @@ class Solution {
             treeMap.put(job[1], maxProfit);
         }
 
-        return maxProfit;
+        return treeMap.lastEntry().getValue();
     }
 }
