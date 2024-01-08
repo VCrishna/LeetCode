@@ -1,19 +1,12 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        if(nums.length == 1) return true;
-        int currentIndex = 0;
-        int index = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (currentIndex < i) {
-                return false; // Unable to reach the current position
-            }
-            currentIndex = Math.max(currentIndex, i + nums[i]);
-            
-            if (currentIndex >= nums.length - 1) {
-                return true; // Reached or surpassed the last index
+        int goal = nums.length - 1;
+
+        for(int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] + i >= goal) {
+                goal = i;
             }
         }
-
-        return true;
+        return goal == 0;
     }
 }
