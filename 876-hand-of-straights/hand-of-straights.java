@@ -4,21 +4,16 @@ class Solution {
         if (hand.length % groupSize != 0) {
             return false;
         }
-        Arrays.sort(hand);
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int i = 0; i < hand.length; i++) {
             map.put(hand[i], map.getOrDefault(hand[i], 0) + 1);
         }
-        map.forEach((x, y) -> System.out.println(x + " " + y));
-        for (int num : hand) {
-            if (map.getOrDefault(num, 0) > 0) {
-                // Check for a consecutive sequence of length groupSize
-                for (int i = 0; i < groupSize; i++) {
-                    if (map.getOrDefault(num + i, 0) == 0) {
-                        return false;
-                    }
-                    map.put(num + i, map.get(num + i) - 1);
-                }
+        while (map.size() > 0) {
+            int minValue = map.firstKey();
+            for (int card = minValue; card < minValue + groupSize; card++) {
+                if (!map.containsKey(card)) return false;
+                map.put(card, map.get(card) - 1);
+                if (map.get(card) == 0) map.remove(card);
             }
         }
         return true;
