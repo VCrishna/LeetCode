@@ -16,7 +16,7 @@ class Solution {
                 continue;
             }
             if (s.substring(i - word.length() + 1, i + 1).equals(word) && 
-            dp(s, wordDict, i - word.length())) {
+                dp(s, wordDict, i - word.length())) {
                 memo[i] = 1;
                 return true;
             }
