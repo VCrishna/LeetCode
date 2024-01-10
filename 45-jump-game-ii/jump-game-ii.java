@@ -15,6 +15,7 @@ class Solution {
             left = right + 1;
             // Updating the right boundary with the farthest reachable index
             right = farthest;
+            // Increment the result (number of jumps)
             result++;
         }
         return result;
