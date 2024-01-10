@@ -8,10 +8,13 @@ class Solution {
             for (String word : wordDict) {
                 int wordLength = word.length();
                 if(
+                    // length should be inbound
+                    // Check if the current substring equals the word
                     i + wordLength <= sLength && s.substring(i, i + wordLength).equals(word)
                 ) {
                     dp[i] = dp[i + wordLength];
                 }
+                // Break the inner loop if memo[i] is already true
                 if(dp[i]) {
                     break;
                 }
