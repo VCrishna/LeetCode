@@ -1,27 +1,24 @@
 class Solution {
-    private int[] memo;
-    public boolean wordBreak(String s, List<String> wordDict) {
-        memo = new int[s.length()];
-        Arrays.fill(memo, -1);
-        return dp(s, wordDict, s.length()-1);
+    private boolean[] memo;
 
-    }
-    public boolean dp(String s, List<String> wordDict, int i) {
-        if(i < 0)
-            return true;
-        if(memo[i] != -1)
-            return memo[i] == 1;
-        for(String word : wordDict) {
-            if (i - word.length() + 1 < 0) {
-                continue;
-            }
-            if (s.substring(i - word.length() + 1, i + 1).equals(word) && 
-                dp(s, wordDict, i - word.length())) {
-                memo[i] = 1;
-                return true;
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int sLength = s.length();
+        memo = new boolean[sLength + 1];
+        memo[sLength] = true;
+
+        for (int i = sLength - 1; i >= 0; i--) {
+            for (String word : wordDict) {
+                int wordLen = word.length();
+                // Check if the current substring equals the word
+                if (i + wordLen <= sLength && s.substring(i, i + wordLen).equals(word)) {
+                    memo[i] = memo[i + wordLen];
+                }
+                // Break the inner loop if memo[i] is already true
+                if (memo[i]) {
+                    break;
+                }
             }
         }
-        memo[i] = 0;
-        return false;
+        return memo[0];
     }
 }
