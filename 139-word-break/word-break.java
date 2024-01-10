@@ -1,9 +1,8 @@
 class Solution {
-    private boolean[] memo;
-
     public boolean wordBreak(String s, List<String> wordDict) {
+
         int sLength = s.length();
-        memo = new boolean[sLength + 1];
+        boolean[] memo = new boolean[sLength + 1];
         memo[sLength] = true;
 
         for (int i = sLength - 1; i >= 0; i--) {
