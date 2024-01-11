@@ -18,9 +18,9 @@ class Solution {
 
     public int maxAncestorDiff(TreeNode root) {
         // dfs (root, min, max)
-        // dfs(root, root.val, root.val);
-        // return result;
-        return findMaxDifference(root, root.val, root.val);
+        dfs(root, root.val, root.val);
+        return result;
+        // return findMaxDifference(root, root.val, root.val);
     }
 
     public void dfs(TreeNode root, int min, int max) {
