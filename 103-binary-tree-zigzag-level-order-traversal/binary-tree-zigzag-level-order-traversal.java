@@ -20,20 +20,22 @@ class Solution {
             return result;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int zig = 1;
+        int zig = 0;
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             List<Integer> subList = new ArrayList<>();
             for (int i = 0; i < levelSize; i++) {
                 TreeNode currentNode = queue.remove();
-                subList.add(currentNode.val);
+                // subList.add(currentNode.val);
                 if (currentNode.left != null)
                     queue.add(currentNode.left);
                 if (currentNode.right != null)
                     queue.add(currentNode.right);
-            }
-            if (zig % 2 == 0) {
-                Collections.reverse(subList);
+                if (zig % 2 == 0) {
+                    subList.add(currentNode.val);
+                } else {
+                    subList.add(0, currentNode.val);
+                }
             }
             result.add(subList);
             zig++;
