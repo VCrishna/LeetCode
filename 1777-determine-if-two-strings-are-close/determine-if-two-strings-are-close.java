@@ -9,7 +9,7 @@ class Solution {
         for(char c : word2.toCharArray()) {
             freqCount2[c - 'a']++;
         }
-
+        // checking that all the characters exist in both arrays
         for(int i = 0; i < 26; i++) {
             if((freqCount1[i] == 0 && freqCount2[i] > 0) || 
                 (freqCount1[i] > 0 && freqCount2[i] == 0)) {
