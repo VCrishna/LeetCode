@@ -11,14 +11,15 @@ class Solution {
         for (int column = 1; column < columns; column++) {
             grid[0][column] += grid[0][column - 1];
         }
-        // Iterating through the grid to calculate cumulative sums and find the minimum path
+        // Iterating through the grid to calculate cumulative sums,
+        // and find the minimum path
         for (int row = 1; row < rows; row++) {
             for (int column = 1; column < columns; column++) {
-                // Updating the current cell with the minimum cumulative sum from the top or left
+                // Updating the current cell with the minimum cumulative sum
+                // from the top or left
                 grid[row][column] += Math.min(
                         grid[row - 1][column],
-                        grid[row][column - 1]
-                );
+                        grid[row][column - 1]);
             }
         }
         // Returning the minimum path sum at the bottom-right corner of the grid
