@@ -1,8 +1,8 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
         Set<Integer> players = new HashSet<>();
-        TreeMap<Integer, Integer> winnerMap = new TreeMap<>();
-        TreeMap<Integer, Integer> loserMap = new TreeMap<>();
+        Map<Integer, Integer> winnerMap = new HashMap<>();
+        Map<Integer, Integer> loserMap = new HashMap<>();
         for (int[] match : matches) {
             players.add(match[0]);
             players.add(match[1]);
