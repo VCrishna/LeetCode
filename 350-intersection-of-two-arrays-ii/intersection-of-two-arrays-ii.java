@@ -1,33 +1,40 @@
+// Runtime: 1 ms, faster than 99.13% of Java online submissions for Intersection of Two Arrays II.
+// Memory Usage: 42.5 MB, less than 92.71% of Java online submissions for Intersection of Two Arrays II.
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        ArrayList<Integer> arr = new ArrayList<>();
-        int len1 = nums1.length;
-        int len2 = nums2.length;
-        for (int i = 0; i < len1; i++) {
-            int x = nums1[i];
-            if (map.containsKey(x)) {
-                map.put(x, map.get(x) + 1);
-            } else {
-                map.put(x, 1);
+        // Sort both the arrays first...
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        // Create an array list...
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        // Use two pointers i and j for the two arrays and initialize both with zero.
+        int i = 0, j = 0;
+        while (i < nums1.length && j < nums2.length) {
+            // If nums1[i] is less than nums2[j]...
+            // Leave the smaller element and go to next(greater) element in nums1...
+            if (nums1[i] < nums2[j]) {
+                i++;
+            }
+            // If nums1[i] is greater than nums2[j]...
+            // Go to next(greater) element in nums2 array...
+            else if (nums1[i] > nums2[j]) {
+                j++;
+            }
+            // If both the elements intersected...
+            // Add this element to arr & increment both i and j.
+            else {
+                arr.add(nums1[i]);
+                i++;
+                j++;
             }
         }
-
-        for (int i = 0; i < len2; i++) {
-            int y = nums2[i];
-            if (map.containsKey(y) && map.get(y) > 0) {
-                arr.add(y);
-                map.put(y, map.get(y) - 1);
-            }
+        // Create a output list to store the output...
+        int[] output = new int[arr.size()];
+        int k = 0;
+        while (k < arr.size()) {
+            output[k] = arr.get(k);
+            k++;
         }
-
-        int[] a = new int[arr.size()];
-        int j = 0;
-        for (int i : arr) {
-            a[j++] = i;
-        }
-
-        return a;
-
+        return output;
     }
 }
