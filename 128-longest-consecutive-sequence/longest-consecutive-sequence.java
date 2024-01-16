@@ -1,9 +1,12 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
-        if (nums.length == 0) return 0;
-        if (nums.length == 1) return 1;
+        if (nums.length == 0)
+            return 0;
+        if (nums.length == 1)
+            return 1;
         Set<Integer> set = new HashSet<>();
-        for (int i : nums) set.add(i);
+        for (int i : nums)
+            set.add(i);
         int longestSequence = 0;
         for (int i : nums) {
             int currentSequence = i;
