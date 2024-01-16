@@ -1,44 +1,49 @@
 class RandomizedSet {
-    public Map<Integer,Integer> numMap;
-    public List<Integer> numList;
+    Map<Integer, Integer> indexingMap;
+    List<Integer> numbers;
 
     public RandomizedSet() {
-        numMap = new HashMap<>();
-        numList = new ArrayList<>();
+        indexingMap = new HashMap<>();
+        numbers = new ArrayList<>();
     }
-    
+
+    // Append to the end, maintain indexing
+    // Delete by swapping with the end, maintain indexing
+    // Get random by getting a random index wrt list's size
     public boolean insert(int val) {
-        if(numMap.containsKey(val)) {
+        if (indexingMap.containsKey(val)) {
             return false;
         }
-        numMap.put(val, numList.size());
-        numList.add(val);
+        int indexInsert = numbers.size();
+        numbers.add(val);
+        indexingMap.put(val, indexInsert);
         return true;
     }
-    
+
     public boolean remove(int val) {
-        if(!numMap.containsKey(val)) {
+        if (!indexingMap.containsKey(val)) {
             return false;
         }
-        int lastIndex = numList.size() - 1;
-        int lastElement = numList.get(lastIndex);
-        int indexElement = numMap.get(val);
+
+        int lastIndex = numbers.size() - 1;
+        int lastElement = numbers.get(lastIndex);
+        int indexElement = indexingMap.get(val);
 
         // Swap with last element
-        numList.set(indexElement, lastElement);
+        numbers.set(indexElement, lastElement);
 
         // Update indices [Add & Delete]
-        numMap.put(lastElement, indexElement);
-        numMap.remove(val);
+        indexingMap.put(lastElement, indexElement);
+        indexingMap.remove(val);
 
         // Remove from list
-        numList.remove(lastIndex);
+        numbers.remove(lastIndex);
         return true;
     }
-    
+
     public int getRandom() {
-        int randomIndex = (int) (Math.random() * this.numList.size());
-        return this.numList.get(randomIndex);
+        int randomIndex = (int) (Math.random() * numbers.size());
+        return numbers.get(randomIndex);
     }
 }
 
