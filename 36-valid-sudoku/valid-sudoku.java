@@ -1,27 +1,38 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
+        // Maps to keep track of numbers in rows, columns, and squares.
         Map<Integer, Set<Character>> rows = new HashMap<>();
         Map<Integer, Set<Character>> columns = new HashMap<>();
         Map<Integer, Set<Character>> squares = new HashMap<>();
 
-        for(int row = 0; row < board.length; row++) {
-            for(int column = 0; column < board[row].length; column++) {
+        // Looping through each cell in the Sudoku board.
+        for (int row = 0; row < board.length; row++) {
+            for (int column = 0; column < board[row].length; column++) {
                 char current = board[row][column];
-                if(current == '.') {
+
+                // Skipping if the current cell is empty.
+                if (current == '.') {
                     continue;
                 }
 
-                if((rows.containsKey(row) && rows.get(row).contains(current)) ||
-                   (columns.containsKey(column) && columns.get(column).contains(current)) ||
-                    (squares.containsKey((row / 3) * 3 + column / 3) && squares.get((row / 3) * 3 + column / 3).contains(current))
-                ) {
-                    return false;
+                // Checking if the current number has already been seen
+                // in the same row, column, or square.
+                if ((rows.containsKey(row) && rows.get(row).contains(current)) ||
+                        (columns.containsKey(column) && columns.get(column).contains(current)) ||
+                        (squares.containsKey((row / 3) * 3 + column / 3)
+                                && squares.get((row / 3) * 3 + column / 3).contains(current))) {
+                    return false; // If any condition is violated, the board is invalid.
                 }
+
+                // Updating the sets in the maps with the current number
+                // for the corresponding row, column, and square.
                 rows.computeIfAbsent(row, k -> new HashSet<>()).add(current);
                 columns.computeIfAbsent(column, k -> new HashSet<>()).add(current);
                 squares.computeIfAbsent((row / 3) * 3 + column / 3, k -> new HashSet<>()).add(current);
             }
         }
+        // If the loop completes without finding any violations, 
+        // the Sudoku board is valid.
         return true;
     }
 }
