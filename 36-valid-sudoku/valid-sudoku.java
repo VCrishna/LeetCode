@@ -1,28 +1,27 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        Map<Integer, Set<Character>> cols = new HashMap<>();
         Map<Integer, Set<Character>> rows = new HashMap<>();
+        Map<Integer, Set<Character>> columns = new HashMap<>();
         Map<Integer, Set<Character>> squares = new HashMap<>();
 
-        for (int r = 0; r < 9; r++) {
-            for (int c = 0; c < 9; c++) {
-                if (board[r][c] == '.') {
+        for(int row = 0; row < board.length; row++) {
+            for(int column = 0; column < board[row].length; column++) {
+                char current = board[row][column];
+                if(current == '.') {
                     continue;
                 }
 
-                if (rows.containsKey(r) && rows.get(r).contains(board[r][c]) ||
-                        cols.containsKey(c) && cols.get(c).contains(board[r][c]) ||
-                        squares.containsKey((r / 3) * 3 + c / 3)
-                                && squares.get((r / 3) * 3 + c / 3).contains(board[r][c])) {
+                if((rows.containsKey(row) && rows.get(row).contains(current)) ||
+                   (columns.containsKey(column) && columns.get(column).contains(current)) ||
+                    (squares.containsKey((row / 3) * 3 + column / 3) && squares.get((row / 3) * 3 + column / 3).contains(current))
+                ) {
                     return false;
                 }
-
-                cols.computeIfAbsent(c, k -> new HashSet<>()).add(board[r][c]);
-                rows.computeIfAbsent(r, k -> new HashSet<>()).add(board[r][c]);
-                squares.computeIfAbsent((r / 3) * 3 + c / 3, k -> new HashSet<>()).add(board[r][c]);
+                rows.computeIfAbsent(row, k -> new HashSet<>()).add(current);
+                columns.computeIfAbsent(column, k -> new HashSet<>()).add(current);
+                squares.computeIfAbsent((row / 3) * 3 + column / 3, k -> new HashSet<>()).add(current);
             }
         }
-
         return true;
     }
 }
