@@ -2,12 +2,12 @@ class Solution {
     public boolean checkInclusion(String s1, String s2) {
         int len1 = s1.length(), len2 = s2.length();
 
-        // If the length of s1 is greater than s2, 
+        // If the length of s1 is greater than s2,
         // it's not possible for s1 to be a permutation of s2
         if (len1 > len2)
             return false;
 
-        // Arrays to store the count of characters in the 
+        // Arrays to store the count of characters in the
         // current window for both strings
         int[] count1 = new int[26];
         int[] count2 = new int[26];
@@ -30,7 +30,7 @@ class Solution {
 
         // Using a sliding window to traverse the rest of s2
         for (int right = len1; right < len2; right++) {
-            // If all characters have matching counts, 
+            // If all characters have matching counts,
             // s1 is a permutation of the current window in s2
             if (matches == 26) {
                 return true;
@@ -44,8 +44,8 @@ class Solution {
             // Updating matches based on the change in counts
             if (count1[index] == count2[index]) {
                 matches++;
-            } 
-            // Adjusting matches when the count of the current character in s2 
+            }
+            // Adjusting matches when the count of the current character in s2
             // becomes one more than in s1
             else if (count1[index] + 1 == count2[index]) {
                 matches--;
@@ -59,7 +59,7 @@ class Solution {
             if (count1[index] == count2[index]) {
                 matches++;
             }
-            // Adjusting matches when the count of the current character in s2 
+            // Adjusting matches when the count of the current character in s2
             // becomes one less than in s1
             else if (count1[index] - 1 == count2[index]) {
                 matches--;
@@ -71,6 +71,42 @@ class Solution {
         // Checking for the last window
         return matches == 26;
     }
+
+    public boolean checkInclusion_NEETCODE_METHOD(String s1, String s2) {
+        // Length of s1
+        int n = s1.length();
+        // Length of s2
+        int m = s2.length();
+        
+        // Frequency array to store the count of characters in s1
+        int[] freq = new int[26];
+        // Frequency array to track the current window in s2
+        int[] freq2 = new int[26];
+
+        // Initialize the frequency array for s1
+        for (int i = 0; i < n; i++) {
+            freq[s1.charAt(i) - 'a']++;
+        }
+
+        // Iterate through each character in s2
+        for (int i = 0; i < m; i++) {
+            // Update the frequency of the current character in the window
+            freq2[s2.charAt(i) - 'a']++;
+
+            // If the window size is equal to the length of s1, adjust the window
+            if (i >= n) {
+                freq2[s2.charAt(i - n) - 'a']--;
+            }
+
+            // Check if the frequencies of characters in the current window match those of s1
+            if (Arrays.equals(freq, freq2))
+                return true;
+        }
+
+        // If no matching window is found, return false
+        return false;
+    }
+
 }
 
 // public class Solution {
