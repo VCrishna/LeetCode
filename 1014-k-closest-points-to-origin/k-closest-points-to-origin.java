@@ -1,14 +1,14 @@
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
         int[][] result = new int[k][2];
-        PriorityQueue<int[]> maxHeap = new PriorityQueue<>(
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>(
             (a, b) -> calculateDistance(a) - calculateDistance(b)
         );
         for (int i = 0; i < points.length; i++) {
-            maxHeap.offer(new int[] { points[i][0], points[i][1] });
+            minHeap.offer(new int[] { points[i][0], points[i][1] });
         }
         for (int i = 0; i < k; i++) {
-            int[] current = maxHeap.poll();
+            int[] current = minHeap.poll();
             result[i][0] = current[0];
             result[i][1] = current[1];
         }
