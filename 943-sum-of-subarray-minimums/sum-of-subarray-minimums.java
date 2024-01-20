@@ -11,15 +11,13 @@ class Solution {
 
             // when i reaches the array length, it is an indication that
             // all the elements have been processed, and the remaining
-            // elements in the stack should now be popped out.
-
+            // elements in the stack should now be popped out
             while (!stack.empty() && (i == arr.length || arr[stack.peek()] >= arr[i])) {
 
                 // Notice the sign ">=", This ensures that no contribution
                 // is counted twice. rightBoundary takes equal or smaller
                 // elements into account while leftBoundary takes only the
                 // strictly smaller elements into account
-
                 int mid = stack.pop();
                 int leftBoundary = stack.empty() ? -1 : stack.peek();
                 int rightBoundary = i;
