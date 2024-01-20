@@ -1,6 +1,6 @@
 class Solution {
     public void wiggleSort(int[] nums) {
-        // Iterate through the array starting from the second element
+        // Iterating through the array starting from the second element
         for (int i = 1; i < nums.length; i++) {
             // Checking if the current index is odd and the 
             // current value is less than the previous value
