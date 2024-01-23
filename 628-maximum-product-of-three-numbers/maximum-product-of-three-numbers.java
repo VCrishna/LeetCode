@@ -31,4 +31,19 @@ class Solution {
         }
         return Math.max(max1 * max2 * max3, min1 * min2 * max1);
     }
+
+    public int maximumProduct_SORTING(int[] nums) {
+        // Sort the array in ascending order
+        Arrays.sort(nums);
+        int n = nums.length;
+
+        // Calculate the product of the three largest elements
+        int product1 = nums[n - 1] * nums[n - 2] * nums[n - 3];
+
+        // Calculate the product of the two smallest elements and the largest element
+        int product2 = nums[0] * nums[1] * nums[n - 1];
+
+        return Math.max(product1, product2);
+    }
+
 }
