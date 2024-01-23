@@ -1,35 +1,34 @@
 class Solution {
+    private int result = 0;
+
     public int maxLength(List<String> arr) {
-        int[] result = new int[1];
-        // arr, index, currentString, int[] result
-        backtrack(arr, 0, "", result);
-        return result[0];
+        backtrack(arr, 0, "");
+        return result;
     }
-    public void backtrack(
-        List<String> arr,
-        int index,
-        String currentString,
-        int[] result
-    ) {
-        if(index == arr.size() && noOfUniqueCharacters(currentString) > result[0]) {
-            result[0] = noOfUniqueCharacters(currentString);
+
+    private void backtrack(List<String> arr, int index, String currentString) {
+        if (index == arr.size() && isUnique(currentString)) {
+            result = Math.max(result, currentString.length());
             return;
         }
-        if(index == arr.size()) {
+
+        if (index == arr.size()) {
             return;
         }
+
         // consider current word
-        backtrack(arr, index + 1, currentString + arr.get(index), result);
+        backtrack(arr, index + 1, currentString + arr.get(index));
         // do not consider current word
-        backtrack(arr, index + 1, currentString, result);
+        backtrack(arr, index + 1, currentString);
     }
-    public int noOfUniqueCharacters(String s) {
-        int[] count = new int[26];
-        for(char c : s.toCharArray()) {
-            if(count[c - 'a']++ > 0) {
-                return -1;
+
+    private boolean isUnique(String s) {
+        Set<Character> uniqueChars = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            if (!uniqueChars.add(c)) {
+                return false;
             }
         }
-        return s.length();
+        return true;
     }
 }
