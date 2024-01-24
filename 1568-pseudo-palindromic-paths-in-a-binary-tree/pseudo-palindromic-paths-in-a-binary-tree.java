@@ -14,7 +14,9 @@
  * }
  */
 class Solution {
+    // Counter for pseudo-palindromic paths
     int count;
+    // Array to store frequency of each digit (0 to 9)
     int[] freqArray;
 
     public int pseudoPalindromicPaths(TreeNode root) {
@@ -24,34 +26,40 @@ class Solution {
         return count;
     }
 
+    // Depth-first search to traverse the binary tree
     public void dfs(TreeNode root) {
         if (root == null) {
             return;
         }
+        // Incrementing the frequency of the current node's value
         freqArray[root.val]++;
+
+        // If the current node is a leaf node (has no left and right children)
         if (root.left == null && root.right == null) {
+            // Incrementing count if the path is pseudo-palindromic
             if (isPalindrome()) {
                 count++;
             }
         } else {
-            dfs(root.left);
-            dfs(root.right);
+            dfs(root.left);   // Recursively exploring left subtree
+            dfs(root.right);  // Recursively exploring right subtree
         }
+        // Backtrack: decrement the frequency of the current node's value
         freqArray[root.val]--;
     }
 
+    // Checking whether the current path is pseudo-palindromic
     public boolean isPalindrome() {
         int oddCount = 0;
 
-        // Count the number of nodes with odd frequency
+        // Counting the number of nodes with odd frequency
         for (int i = 1; i <= 9; i++) {
             if (freqArray[i] % 2 != 0) {
                 oddCount++;
             }
         }
 
-        // Ensure at most one node has odd frequency
+            // Ensuring at most one node has odd frequency for the path to be pseudo-palindromic
         return oddCount <= 1;
     }
-
 }
