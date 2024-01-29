@@ -17,7 +17,7 @@ class MyQueue {
     public int pop() {
         int i=lst.get(0);
         lst.remove(Integer.valueOf(i));
-        count++;
+        count--;
         return i;
     }
     
