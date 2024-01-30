@@ -17,17 +17,20 @@ class Solution {
             // While the stack is not empty and the current element is 
             // greater than the element at the top of the stack
             while (!stack.isEmpty() && nums[stack.peek()] < num) {
-                // Updating the result array with the next greater element for the element at the top of the stack
+                // Updating the result array with the next greater element 
+                // for the element at the top of the stack
                 result[stack.pop()] = num;
             }
             
-            // If the current iteration is within the original array length, push the current index onto the stack
+            // If the current iteration is within the original array length, 
+            // push the current index onto the stack
             if (i < nums.length) {
                 stack.push(i);
             }
         }
 
-        // Return the modified result array containing the next greater element for each element in the input array
+        // Returning the modified result array containing 
+        // the next greater element for each element in the input array
         return result;
     }
 }
