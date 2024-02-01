@@ -1,9 +1,9 @@
 public class Codec {
-
     // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
         StringBuilder encode = new StringBuilder();
-        for (String s : strs) encode.append(s.length() + "#" + s);
+        for (String s : strs)
+            encode.append(s.length() + "#" + s);
         return encode.toString();
     }
 
