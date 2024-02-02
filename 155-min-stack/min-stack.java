@@ -1,5 +1,7 @@
 class MinStack {
+    // stack holds all the values
     Stack<Integer> stack;
+    // minStack hold the current min value at the node or value in stack
     Stack<Integer> minStack;
     public MinStack() {
         stack = new Stack();
