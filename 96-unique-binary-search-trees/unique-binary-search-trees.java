@@ -31,17 +31,17 @@ Hope it will help you to understand :
     
     count[4] = 5 + 2 + 2 + 5 = 14     
 
-And  so on...
+And  so on...N
 */
 class Solution {
     public int numTrees(int n) {
-        int [] UniqueBST = new int[n+1];
+        int[] UniqueBST = new int[n + 1];
         // Base case
         UniqueBST[0] = UniqueBST[1] = 1;
-            
-        for(int i=2; i<=n; ++i) {
-            for(int j=1; j<=i; ++j) {
-                UniqueBST[i] += UniqueBST[j-1] * UniqueBST[i-j];
+
+        for (int i = 2; i <= n; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                UniqueBST[i] += UniqueBST[j - 1] * UniqueBST[i - j];
             }
         }
         return UniqueBST[n];
