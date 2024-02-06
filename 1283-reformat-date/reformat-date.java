@@ -1,5 +1,4 @@
 class Solution {
-
     public String reformatDate(String date) {
         Map<String, String> months = new HashMap<>();
         months.put("Jan", "01");
@@ -17,7 +16,10 @@ class Solution {
         StringBuilder reformatedDate = new StringBuilder();
         String[] dateStrs = date.split(" ");
         String day = dateStrs[0].length() > 3 ? dateStrs[0].substring(0, 2) : "0" + dateStrs[0].substring(0, 1);
-        reformatedDate.append(dateStrs[2] + "-" + months.get(dateStrs[1]) + "-" + day);
+        reformatedDate.append(
+                        dateStrs[2] + "-" +
+                        months.get(dateStrs[1]) + "-" +
+                        day);
 
         return reformatedDate.toString();
     }
