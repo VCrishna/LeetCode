@@ -3,21 +3,90 @@ class MyHashMap {
 
     public MyHashMap() {
         map = new int[1000001];
-        Arrays.fill(map, -1);
+        // Arrays.fill(map, -1);
     }
 
     public void put(int key, int value) {
-        map[key] = value;
+        map[key] = value + 1;
     }
 
     public int get(int key) {
-        return map[key];
+        return map[key] - 1;
     }
 
     public void remove(int key) {
-        map[key] = -1;
+        map[key] = 0;
     }
 }
+
+/**
+class MyHashMap {
+    private static final int numBuckets = 1000;
+    private LinkedList<Entry>[] buckets;
+
+    private static class Entry {
+        int key;
+        int value;
+        Entry next;
+
+        Entry(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    public MyHashMap() {
+        buckets = new LinkedList[numBuckets];
+        for (int i = 0; i < numBuckets; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+    }
+
+    public void put(int key, int value) {
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                entry.value = value;
+                return;
+            }
+        }
+
+        bucket.add(new Entry(key, value));
+    }
+
+    public int get(int key) {
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                return entry.value;
+            }
+        }
+
+        return -1;
+    }
+
+    public void remove(int key) {
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+
+        Entry toRemove = null;
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                toRemove = entry;
+                break;
+            }
+        }
+
+        if (toRemove != null) {
+            bucket.remove(toRemove);
+        }
+    }
+}
+ */
 
 /**
  * Your MyHashMap object will be instantiated and called as such:
