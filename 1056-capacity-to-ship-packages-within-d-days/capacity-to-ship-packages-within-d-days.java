@@ -1,7 +1,7 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
         // Initializing the left and right bounds for binary search
-        int left = Integer.MIN_VALUE;
+        int left = 0;
         int right = 0;
         // Initializing the result with the maximum possible value
         int result = Integer.MAX_VALUE;
