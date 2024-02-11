@@ -1,11 +1,23 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
-        BACKTRACK(result, "", 0,  0, n);
+        BACKTRACK(
+            result, 
+            "", 
+            0,  
+            0, 
+            n
+            );
         return result;
     }
 
-    public void BACKTRACK(List<String> result, String currentString, int openCount, int closeCount, int max) {
+    public void BACKTRACK(
+        List<String> result, 
+        String currentString, 
+        int openCount, 
+        int closeCount, 
+        int max
+        ) {
         if (currentString.length() == max * 2) {
             result.add(currentString);
             return;
