@@ -37,13 +37,11 @@ class MyHashMap {
     public int get(int key) {
         int index = key % numBuckets;
         LinkedList<Entry> bucket = buckets[index];
-
         for (Entry entry : bucket) {
             if (entry.key == key) {
                 return entry.value;
             }
         }
-
         return -1;
     }
 
