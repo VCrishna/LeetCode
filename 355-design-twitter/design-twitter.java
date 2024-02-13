@@ -29,9 +29,10 @@ class Twitter {
         List<Integer> feed = new ArrayList<>();
         // getting all the user followers
         Set<Integer> followers = users.getOrDefault(userId, new HashSet<>());
-        // as we also want to show user tweets as well so we are adding userId into the set
+        // as we also want to show user tweets as well so we are adding userId into the
+        // set
         followers.add(userId);
-        // maxHeap 
+        // maxHeap
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[0] - a[0]);
         // adding tweets of each user into the priorityqueue
         for (int user : followers) {
@@ -56,7 +57,7 @@ class Twitter {
     }
 
     public void unfollow(int followerId, int followeeId) {
-        if (users.containsKey(followerId)) 
+        if (users.containsKey(followerId))
             users.get(followerId).remove(followeeId);
     }
 }
