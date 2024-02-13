@@ -1,32 +1,62 @@
 class MyHashSet {
-    private final LinkedList[] buckets;
-    private static final int AMOUNT_OF_BUCKETS = 10000;
+    private static final int numBuckets = 1000;
+    private LinkedList<Entry>[] buckets;
+
+    private static class Entry {
+        int key;
+        Entry next;
+
+        Entry(int key) {
+            this.key = key;
+        }
+    }
 
     public MyHashSet() {
-        buckets = new LinkedList[AMOUNT_OF_BUCKETS];
-        for (int i = 0; i < AMOUNT_OF_BUCKETS; i++) {
-            buckets[i] = new LinkedList();
+        buckets = new LinkedList[numBuckets];
+        for (int i = 0; i < numBuckets; i++) {
+            buckets[i] = new LinkedList<>();
         }
     }
 
     public void add(int key) {
-        int bucketNumber = key % AMOUNT_OF_BUCKETS;
-        LinkedList<Integer> bucket = buckets[bucketNumber];
-        if (!bucket.contains(key)) {
-            bucket.add(key);
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                return;
+            }
         }
+
+        bucket.add(new Entry(key));
     }
 
     public void remove(int key) {
-        int bucketNumber = key % AMOUNT_OF_BUCKETS;
-        LinkedList<Integer> bucket = buckets[bucketNumber];
-        bucket.removeIf(value -> value == key);
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+
+        Entry toRemove = null;
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                toRemove = entry;
+                break;
+            }
+        }
+
+        if (toRemove != null) {
+            bucket.remove(toRemove);
+        }
     }
 
     public boolean contains(int key) {
-        int bucketNumber = key % AMOUNT_OF_BUCKETS;
-        LinkedList<Integer> bucket = buckets[bucketNumber];
-        return bucket.contains(key);
+        int index = key % numBuckets;
+        LinkedList<Entry> bucket = buckets[index];
+        for (Entry entry : bucket) {
+            if (entry.key == key) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
