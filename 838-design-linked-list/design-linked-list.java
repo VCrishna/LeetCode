@@ -28,10 +28,11 @@ class MyLinkedList {
     }
 
     public void addAtHead(int val) {
-        Node addH = new Node(val);
-        addH.next = head.next;
-        head.next = addH;
-        size++;
+        // Node addH = new Node(val);
+        // addH.next = head.next;
+        // head.next = addH;
+        // size++;
+        addAtIndex(0, val);
     }
 
     public void addAtTail(int val) {
