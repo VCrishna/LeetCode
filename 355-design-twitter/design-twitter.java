@@ -2,11 +2,11 @@ class Twitter {
     // User - follower list
     // userid, followers set
     // Map<User, Set<Users>>
-    Map<Integer, Set<Integer>> users;
+    private Map<Integer, Set<Integer>> users;
     // userid, List[timestamp, tweet]
     // Map<Integer, List<int[]> tweetMap;
-    Map<Integer, List<int[]>> tweetMap;
-    int time;
+    private Map<Integer, List<int[]>> tweetMap;
+    private int time;
 
     public Twitter() {
         users = new HashMap<>();
