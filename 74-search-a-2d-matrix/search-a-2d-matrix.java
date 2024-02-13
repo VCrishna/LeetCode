@@ -14,15 +14,15 @@ class Solution {
             int middleValue = matrix[middleIndex / columns][middleIndex % columns];
 
             // Checking if the middle value is equal to the target
-            if (middleValue == target) 
+            if (middleValue == target)
                 return true;
-            
-            // If the middle value is greater than the target, 
+
+            // If the middle value is greater than the target,
             // narrowing the search to the left
             if (middleValue > target)
                 right = middleIndex - 1;
-            else 
-                // If the middle value is less than the target, 
+            else
+                // If the middle value is less than the target,
                 // narrowing the search to the right
                 left = middleIndex + 1;
         }
