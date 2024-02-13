@@ -1,7 +1,7 @@
 class HitCounter {
     Queue<Integer> queue;
     public HitCounter() {
-        queue = new LinkedList<>();
+        queue = new ArrayDeque<>();
     }
     
     public void hit(int timestamp) {
