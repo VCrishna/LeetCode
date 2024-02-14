@@ -24,9 +24,11 @@ class Solution {
             return;
         }
         for(int i = currentIndex; i < nums.length; i++) {
+            // this condition also checks for duplicates
             if(i > currentIndex && nums[i] == nums[i-1])
                 continue;
             currentList.add(nums[i]);
+            // i + 1 if we want to avoid duplicates
             backtrack(
                 nums,
                 result,
