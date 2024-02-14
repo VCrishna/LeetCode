@@ -1,21 +1,21 @@
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
 
-    // Bottom up approach
+    // Bottom up approach - O(n)
     public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
@@ -39,20 +39,22 @@ class Solution {
 
         return 1 + Math.max(left, right);
     }
+
+    // Top Down approach - O(n ^ 2)
+    public boolean isBalanced_TD(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (Math.abs(height_TD(root.left) - height_TD(root.right)) > 1) {
+            return false;
+        }
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    public int height_TD(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(height_TD(root.left), height_TD(root.right));
+    }
 }
-// Top Down approach
-// public boolean isBalanced(TreeNode root) {
-//     if(root == null){
-//         return true;
-//     }
-//     if(Math.abs(height(root.left) - height(root.right)) > 1){
-//         return false;
-//     }
-//     return isBalanced(root.left) && isBalanced(root.right);
-// }
-// public int height(TreeNode root){
-//     if(root == null){
-//         return 0;
-//     }
-//     return 1 + Math.max(height(root.left), height(root.right));
-// }
