@@ -6,7 +6,7 @@ class Solution {
         boolean[][] visited = new boolean[rows][columns];
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                maxArea = Math.max(maxArea, dfs(grid, row, column, rows, columns,visited));
+                maxArea = Math.max(maxArea, dfs(grid, row, column, rows, columns, visited));
             }
         }
         return maxArea;
