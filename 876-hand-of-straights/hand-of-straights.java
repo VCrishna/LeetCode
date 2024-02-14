@@ -18,7 +18,7 @@ class Solution {
 
             // Iterate over groupSize consecutive cards starting from minValue
             for (int card = minValue; card < minValue + groupSize; card++) {
-                // Check if the current card exists in the TreeMap
+                // Check if the current card doesn't exists in the TreeMap
                 if (!map.containsKey(card)) {
                     return false;
                 }
@@ -35,5 +35,3 @@ class Solution {
         return true;
     }
 }
-// hand = [1,2,3,6,2,3,4,7,8], groupSize = 3
-// hand = [1,2,2,3,3,4,6,7,8]
