@@ -44,7 +44,6 @@ class Solution {
             result.add(path.toString());
             return; // Backtrack
         }
-
         // Get the letters that the current digit maps to, and loop through them
         String possibleLetters = mappings[digits.charAt(index) - '0'];
         for (char letter : possibleLetters.toCharArray()) {
@@ -52,7 +51,6 @@ class Solution {
             path.append(letter);  // Append the current letter
             backtrack(digits, result, index + 1, path, mappings);
             path.deleteCharAt(path.length() - 1);  // Backtrack by removing the last character
-
         }
     }
 }
