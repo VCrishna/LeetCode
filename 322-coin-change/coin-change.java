@@ -21,7 +21,6 @@ class Solution {
                 }
             }
         }
-
         // If dp[amount] is still greater than amount + 1, 
         // it means it wasn't updated, and there's no valid solution
         // else return dp[amount]
