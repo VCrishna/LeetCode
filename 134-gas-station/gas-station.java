@@ -1,5 +1,4 @@
 class Solution {
-
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int gasSum = 0;
         int costSum = 0;
@@ -16,7 +15,7 @@ class Solution {
         int result = 0;
         for (int i = 0; i < gas.length; i++) {
             // If the gas at the current station is not sufficient to cover the cost,
-            // reset the total and update the potential starting station.
+            // reset the total and update the potential starting station
             total += gas[i] - cost[i];
             if (total < 0) {
                 total = 0;
