@@ -57,7 +57,8 @@ class Solution {
         Collections.sort(scores, Collections.reverseOrder());
         for (int i = 0; i < scores.size(); i++) {
             sum += scores.get(i);
-            if (i == 4) break;
+            if (i == 4)
+                break;
         }
 
         return sum / 5;
