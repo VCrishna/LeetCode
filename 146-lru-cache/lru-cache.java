@@ -56,12 +56,12 @@ class LRUCache {
         }
     }
 
-    void removeNode(Node node) {
+    private void removeNode(Node node) {
         node.prev.next = node.next; // Update the next pointer of the previous node
         node.next.prev = node.prev; // Update the previous pointer of the next node
     }
 
-    void addToHead(Node node) {
+    private void addToHead(Node node) {
         node.next = head.next; // Make the next pointer of the new node point to the current first node
         node.prev = head; // Make the previous pointer of the new node point to the head
         head.next.prev = node; // Make the previous pointer of the current first node point to the new node
@@ -69,8 +69,8 @@ class LRUCache {
     }
 }
 // /**
-//  * Your LRUCache object will be instantiated and called as such:
-//  * LRUCache obj = new LRUCache(capacity);
-//  * int param_1 = obj.get(key);
-//  * obj.put(key,value);
-//  */
+// * Your LRUCache object will be instantiated and called as such:
+// * LRUCache obj = new LRUCache(capacity);
+// * int param_1 = obj.get(key);
+// * obj.put(key,value);
+// */
