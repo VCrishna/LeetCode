@@ -1,0 +1,19 @@
+class Solution {
+    public int minimumLength(String s) {
+        if (s.length() == 1) {
+            return 1;
+        }
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right && s.charAt(left) == s.charAt(right)) {
+            char current = s.charAt(left);
+            while (left <= right && s.charAt(left) == current) {
+                left++;
+            }
+            while (right >= left && s.charAt(right) == current) {
+                right--;
+            }
+        }
+        return Math.max(0, right - left + 1);
+    }
+}
