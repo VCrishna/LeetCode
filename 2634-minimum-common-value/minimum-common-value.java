@@ -3,6 +3,10 @@ class Solution {
         // Initializing two pointers, i and j, 
         // to traverse nums1 and nums2 respectively
         int i = 0, j = 0;
+
+        // For faster solution
+        if (nums1[nums1.length-1] < nums2[0] || nums2[nums2.length-1] < nums1[0])
+            return -1;
         
         // Looping until either of the arrays is fully traversed
         while (i < nums1.length && j < nums2.length) {
