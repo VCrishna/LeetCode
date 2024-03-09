@@ -5,6 +5,9 @@ class Solution {
         int i = 0, j = 0;
 
         // For faster solution
+        // Optimization: If the maximum value of nums1 is less than the minimum value of nums2,
+        // or if the maximum value of nums2 is less than the minimum value of nums1,
+        // then there can be no common elements. Returning -1 immediately
         if (nums1[nums1.length-1] < nums2[0] || nums2[nums2.length-1] < nums1[0])
             return -1;
         
