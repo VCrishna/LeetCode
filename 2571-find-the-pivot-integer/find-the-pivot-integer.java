@@ -1,23 +1,24 @@
 public class Solution {
     public int pivotInteger(int n) {
-        // Iterate through possible pivot values
-        for (int i = 1; i <= n; i++) {
-            int sumLeft = 0;
-            int sumRight = 0;
+        int leftValue = 1;
+        int rightValue = n;
+        int sumLeft = leftValue;
+        int sumRight = rightValue;
 
-            // Calculate the sum of elements on the left side of the pivot
-            for (int j = 1; j <= i; j++) {
-                sumLeft += j;
+        if (n == 1) return n;
+
+        // Iterate until the pointers meet
+        while (leftValue < rightValue) {
+            // Adjust sums and pointers based on comparison
+            if (sumLeft < sumRight) {
+                sumLeft += ++leftValue;
+            } else {
+                sumRight += --rightValue;
             }
 
-            // Calculate the sum of elements on the right side of the pivot
-            for (int k = i; k <= n; k++) {
-                sumRight += k;
-            }
-
-            // Check if the sums on both sides are equal
-            if (sumLeft == sumRight) {
-                return i; // Return the pivot value if found
+            // Check for pivot condition
+            if (sumLeft == sumRight && leftValue + 1 == rightValue - 1) {
+                return leftValue + 1;
             }
         }
 
