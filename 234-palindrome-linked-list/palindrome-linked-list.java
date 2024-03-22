@@ -25,7 +25,6 @@ class Solution {
             slow = slow.next;
         }
         return true;
-
     }
 
     public ListNode reverse(ListNode current) {
