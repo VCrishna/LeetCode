@@ -15,12 +15,17 @@ class Solution {
             map.put(head.val, map.getOrDefault(head.val, 0) + 1);
             head = head.next;
         }
-        ListNode result = new ListNode(0);
-        ListNode temp = result;
-        for(int i : map.values()) {
-            ListNode tempNext = new ListNode(i);
-            temp.next = tempNext;
-            temp = tempNext;
+        // ListNode result = new ListNode(0);
+        // ListNode temp = result;
+        // for(int i : map.values()) {
+        //     ListNode tempNext = new ListNode(i);
+        //     temp.next = tempNext;
+        //     temp = tempNext;
+        // }
+        // return result.next;
+        ListNode result = new ListNode();
+        for(int val : map.values()){
+            result.next = new ListNode(val, result.next);
         }
         return result.next;
     }
