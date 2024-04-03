@@ -1,4 +1,8 @@
 class Solution {
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     */
     public long[] distance(int[] nums) {
         // HashMap to store the sum of distances 
         // and count of occurrences for each unique element
@@ -7,7 +11,7 @@ class Solution {
         // Array to store the distances for each element
         long[] answer = new long[nums.length];
 
-        // First pass: iterate through the array from left to right
+        // First pass: iterating through the array from left to right
         for (int i = 0; i < nums.length; i++) {
             // If the current element is encountered for the first time
             if (map.containsKey(nums[i])) {
@@ -23,38 +27,39 @@ class Solution {
                 temp[0] += i;
                 temp[1]++;
             } else {
-                // Initializing the sum of indices and the  count of occurrences for the current element
+                // Initializing the sum of indices and the 
+                // count of occurrences for the current element
                 long[] temp = new long[] { i, 1 };
                 map.put(nums[i], temp);
             }
         }
 
-        // Clear the map for the second pass
+        // Clearing the map for the second pass
         map.clear();
 
-        // Second pass: iterate through the array from right to left
+        // Second pass: iterating through the array from right to left
         for (int i = nums.length - 1; i >= 0; i--) {
             // If the current element is encountered for the first time in the second pass
             if (map.containsKey(nums[i])) {
                 long[] temp = map.get(nums[i]);
 
-                // Calculate the remaining distance for the current element based on the
-                // precomputed sums and counts
+                // Calculating the remaining distance for the current 
+                // element based on the precomputed sums and counts
                 answer[i] += temp[0] - i * temp[1];
 
-                // Update the sum of indices and the count of occurrences for the current
-                // element
+                // Updating the sum of indices and the 
+                // count of occurrences for the current element
                 temp[0] += i;
                 temp[1]++;
             } else {
-                // Initialize the sum of indices and the count of occurrences for the current
-                // element
+                // Initializing the sum of indices and the 
+                // count of occurrences for the current element
                 long[] temp = new long[] { i, 1 };
                 map.put(nums[i], temp);
             }
         }
 
-        // Return the array containing the calculated distances
+        // Returning the array containing the calculated distances
         return answer;
     }
 
