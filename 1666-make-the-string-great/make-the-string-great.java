@@ -9,10 +9,10 @@ class Solution {
             }
         }
         StringBuilder sb = new StringBuilder();
-        while (!stack.isEmpty()) {
-            sb.append(stack.pop() + "");
+        for (Character ch : stack) {
+            sb.append(ch);
         }
-        return sb.reverse().toString();
+        return sb.toString();
 
     }
 }
