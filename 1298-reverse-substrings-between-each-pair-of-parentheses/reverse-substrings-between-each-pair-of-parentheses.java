@@ -2,7 +2,6 @@ class Solution {
     public String reverseParentheses(String s) {
         // Use a stack to keep track of the indices of open parentheses '('
         Stack<Integer> stack = new Stack<>();
-
         // Convert the input string to a character array for easy manipulation
         char[] chars = s.toCharArray();
 
