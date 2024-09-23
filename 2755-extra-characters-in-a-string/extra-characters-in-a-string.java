@@ -1,4 +1,5 @@
 class Solution {
+
     public int minExtraChar(String s, String[] dictionary) {
         int wordLength = s.length();
         Set<String> dict = new HashSet<>(Arrays.asList(dictionary));
@@ -12,7 +13,7 @@ class Solution {
         if (memo[start] != null) return memo[start];
 
         int ans = dp(start + 1, wordLength, s, dict, memo) + 1;
-        for(int end = start; end < wordLength; end++) {
+        for (int end = start; end < wordLength; end++) {
             String current = s.substring(start, end + 1);
             if (dict.contains(current)) {
                 ans = Math.min(ans, dp(end + 1, wordLength, s, dict, memo));
