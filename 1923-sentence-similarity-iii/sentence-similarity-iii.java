@@ -11,7 +11,7 @@ class Solution {
             deque1.poll();
             deque2.poll();
         }
-        // Comparing the suffixes or ending of the stringsææææ
+        // Comparing the suffixes or ending of the strings
         while (
             !deque1.isEmpty() &&
             !deque2.isEmpty() &&
