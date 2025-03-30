@@ -6,7 +6,8 @@ class Solution {
         // The size is 26 because there are 26 lowercase letters.
         int[] lastIndexes = new int[26];
         // Filling up the lastIndexes array
-        for (int i = 0; i < s.length(); i++) lastIndexes[s.charAt(i) - 'a'] = i;
+        for (int i = 0; i < s.length(); i++)
+            lastIndexes[s.charAt(i) - 'a'] = i;
         // Above line is determining the last occurrence of each character.
         // 's.charAt(i) - 'a'' computes the index for the respective character in lastIndexes array.
         // For example, if character is 'a', index would be 0, for 'b' it would be 1, and so on.
