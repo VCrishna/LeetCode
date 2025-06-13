@@ -2,7 +2,8 @@ class Solution {
 
     public int minimizeMax(int[] nums, int p) {
         // Edge case
-        if (p==0) return 0;
+        if (p == 0)
+            return 0;
         // sorting the array
         // sorting is the crux of this problem
         // reason for sorting is that we get minimum difference from adjacent 
@@ -34,6 +35,7 @@ class Solution {
         }
         return result;
     }
+
     // Greedy
     public boolean isValid(int[] nums, int p, int threshold) {
         int count = 0;
@@ -42,16 +44,16 @@ class Solution {
             // checking if the difference of current and previous elements are 
             // less than threshold or min difference
             // then we increase count and increase index by 2 so the we will not use this index again
-            if(nums[index] - nums[index - 1] <= threshold) {
+            if (nums[index] - nums[index - 1] <= threshold) {
                 count++;
                 index += 2;
             }
             // if difference is greater then we shift by 1 we only avoid previous elememt and use next element
-            else{
+            else {
                 index++;
             }
             // any where in this loop if count is equal to p then we return true
-            if (count == p) 
+            if (count == p)
                 return true;
         }
         return false;
