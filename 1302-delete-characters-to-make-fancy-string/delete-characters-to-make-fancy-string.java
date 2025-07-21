@@ -6,11 +6,11 @@ class Solution {
         for (char current : s.toCharArray()) {
             if (current == previous) {
                 freq++;
-            }
-            else {
+            } else {
                 freq = 1;
             }
-            if (freq < 3) sb.append(current);
+            if (freq < 3)
+                sb.append(current);
             previous = current;
         }
         return sb.toString();
