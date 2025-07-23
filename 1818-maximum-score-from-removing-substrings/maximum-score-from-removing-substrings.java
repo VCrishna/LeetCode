@@ -7,20 +7,18 @@ class Solution {
 
         // First pass: remove high priority pair
         String stringAfterFirstPass = removeSubstring(s, highPriorityPair);
-        int removedPairsCount =
-            (s.length() - stringAfterFirstPass.length()) / 2;
+        int removedPairsCount = (s.length() - stringAfterFirstPass.length()) / 2;
 
         // Calculate score from first pass
         totalScore += removedPairsCount * Math.max(x, y);
 
         // Second pass: remove low priority pair
         String stringAfterSecondPass = removeSubstring(
-            stringAfterFirstPass,
-            lowPriorityPair
-        );
+                stringAfterFirstPass,
+                lowPriorityPair);
         removedPairsCount = (stringAfterFirstPass.length() -
-            stringAfterSecondPass.length()) /
-        2;
+                stringAfterSecondPass.length()) /
+                2;
 
         // Calculate score from second pass
         totalScore += removedPairsCount * Math.min(x, y);
@@ -36,11 +34,9 @@ class Solution {
             char currentChar = input.charAt(i);
 
             // Check if current character forms the target pair with the top of the stack
-            if (
-                currentChar == targetPair.charAt(1) &&
-                !charStack.isEmpty() &&
-                charStack.peek() == targetPair.charAt(0)
-            ) {
+            if (currentChar == targetPair.charAt(1) &&
+                    !charStack.isEmpty() &&
+                    charStack.peek() == targetPair.charAt(0)) {
                 charStack.pop(); // Remove the matching character from the stack
             } else {
                 charStack.push(currentChar);
