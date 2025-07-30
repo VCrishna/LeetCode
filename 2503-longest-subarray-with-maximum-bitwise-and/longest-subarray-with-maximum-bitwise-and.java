@@ -1,22 +1,24 @@
 class Solution {
-
     public int longestSubarray(int[] nums) {
-        int maxVal = 0, ans = 0, currentStreak = 0;
+        int maxValue = 0;            // Tracks the maximum value in the array
+        int longestStreak = 0;       // Final answer
+        int currentStreak = 0;       // Current count of consecutive maxValue elements
 
         for (int num : nums) {
-            if (maxVal < num) {
-                maxVal = num;
-                ans = currentStreak = 0;
-            }
-
-            if (maxVal == num) {
+            if (num > maxValue) {
+                // Found a new maximum, reset everything
+                maxValue = num;
+                currentStreak = 1;
+                longestStreak = 1;
+            } else if (num == maxValue) {
+                // Extend the streak of maxValue
                 currentStreak++;
+                longestStreak = Math.max(longestStreak, currentStreak);
             } else {
+                // num < maxValue, so streak breaks
                 currentStreak = 0;
             }
-
-            ans = Math.max(ans, currentStreak);
         }
-        return ans;
+        return longestStreak;
     }
 }
