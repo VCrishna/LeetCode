@@ -4,8 +4,6 @@ class Solution {
         int[] sumOfDivisors = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
             sumOfDivisors[i] = findAndReturnNumberofDivisors(nums[i]);
-        }
-        for (int i = 0; i < nums.length; i++) {
             if (sumOfDivisors[i] != -1) {
                 result += sumOfDivisors[i];
             }
