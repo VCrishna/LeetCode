@@ -7,20 +7,19 @@ class Solution {
         /*
             Priority queue stores:
             [nextCompletionTime, workerId, tasksDoneByWorker]
-
+        
             We always process the worker who can finish
             the next task earliest.
         */
         PriorityQueue<long[]> pq = new PriorityQueue<>(
-            (a, b) -> Long.compare(a[0], b[0])
-        );
+                (a, b) -> Long.compare(a[0], b[0]));
 
         /*
             Initially each worker can finish their
             first task in t[i] seconds.
         */
         for (int i = 0; i < t.length; i++) {
-            pq.add(new long[]{t[i], i, 1});
+            pq.add(new long[] { t[i], i, 1 });
         }
 
         long resultTime = 0;
@@ -56,18 +55,17 @@ class Solution {
 
                 /*
                     Time for worker i after doing k tasks:
-
+                
                     t[i] * (1 + 2 + ... + k)
                     = t[i] * (k * (k + 1) / 2)
-
+                
                     So we compute the time for the
                     next completion.
                 */
-                long nextTime =
-                    (long) t[workerId] *
-                    (nextTaskIndex * (nextTaskIndex + 1) / 2);
+                long nextTime = (long) t[workerId] *
+                        (nextTaskIndex * (nextTaskIndex + 1) / 2);
 
-                pq.add(new long[]{nextTime, workerId, (int) nextTaskIndex});
+                pq.add(new long[] { nextTime, workerId, (int) nextTaskIndex });
             }
         }
 
