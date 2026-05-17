@@ -1,9 +1,9 @@
 class Solution {
     public boolean canReach(int[] arr, int start) {
-        int n = arr.length;
+        int length = arr.length;
         
         // Array to track visited indices
-        boolean[] visited = new boolean[n];
+        boolean[] visited = new boolean[length];
         
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
@@ -30,7 +30,7 @@ class Solution {
             }
             
             // Enqueue the right index if it is valid and not visited
-            if (right < n && !visited[right]) {
+            if (right < length && !visited[right]) {
                 queue.add(right);
             }
         }
