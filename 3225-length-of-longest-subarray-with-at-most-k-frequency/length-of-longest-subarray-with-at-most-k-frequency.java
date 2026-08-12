@@ -4,20 +4,20 @@ class Solution {
         Map<Integer, Integer> frequency = new HashMap();
         int start = 0;
         int charsWithFreqOverK = 0;
-        
+
         for (int end = 0; end < n; end++) {
             frequency.put(nums[end], frequency.getOrDefault(nums[end], 0) + 1);
-            if (frequency.get(nums[end]) == k + 1) { 
+            if (frequency.get(nums[end]) == k + 1) {
                 charsWithFreqOverK++;
             }
-            if (charsWithFreqOverK > 0) { 
-                frequency.put(nums[start], frequency.get(nums[start]) - 1); 
-                if (frequency.get(nums[start]) == k) { 
-                    charsWithFreqOverK--; 
+            if (charsWithFreqOverK > 0) {
+                frequency.put(nums[start], frequency.get(nums[start]) - 1);
+                if (frequency.get(nums[start]) == k) {
+                    charsWithFreqOverK--;
                 }
                 start++;
             }
         }
-        return n - start; 
+        return n - start;
     }
 }
