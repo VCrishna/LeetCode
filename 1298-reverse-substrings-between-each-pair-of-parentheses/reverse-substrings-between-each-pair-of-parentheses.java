@@ -1,42 +1,27 @@
-class Solution {
-    public String reverseParentheses(String s) {
-        // Use a stack to keep track of the indices of open parentheses '('
-        Stack<Integer> stack = new Stack<>();
-        // Convert the input string to a character array for easy manipulation
-        char[] chars = s.toCharArray();
-
-        // Iterate through the characters of the input string
-        for (int i = 0; i < chars.length; i++) {
-            // If an open parenthesis '(' is encountered, push its index onto the stack
-            if (chars[i] == '(') {
-                stack.push(i);
-            } else if (chars[i] == ')') {
-                // If a closing parenthesis ')' is encountered, reverse the substring between
-                // matching parentheses
-                reverseSubstring(chars, stack.pop() + 1, i - 1);
+class Solution { 
+    public String reverseParentheses(String s) { 
+        int n = s.length();
+        int[] pair = new int[n];
+        Deque<Integer> st = new ArrayDeque<>();
+        for (int i = 0; i < n; ++i) {
+            if (s.charAt(i) == '(') st.push(i);
+            else if (s.charAt(i) == ')') {
+                int j = st.pop();
+                pair[i] = j;
+                pair[j] = i;
             }
         }
-
-        // Construct the final result by excluding parentheses '(' and ')'
-        StringBuilder result = new StringBuilder();
-        for (char c : chars) {
-            if (c != '(' && c != ')') {
-                result.append(c);
+        StringBuilder res = new StringBuilder();
+        int i = 0, dir = 1;
+        while (i >= 0 && i < n) {
+            if (s.charAt(i) == '(' || s.charAt(i) == ')') {
+                i = pair[i];
+                dir = -dir;
+            } else {
+                res.append(s.charAt(i));
             }
+            i += dir;
         }
-
-        return result.toString();
-    }
-
-    // Helper method to reverse a substring within the character array
-    private void reverseSubstring(char[] chars, int start, int end) {
-        while (start < end) {
-            // Swap characters at start and end indices
-            char temp = chars[start];
-            chars[start] = chars[end];
-            chars[end] = temp;
-            start++;
-            end--;
-        }
-    }
+        return res.toString();
+    } 
 }
